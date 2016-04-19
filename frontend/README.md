@@ -1,5 +1,7 @@
 ### Web App ###
-* Clone from: TODO
+* npm install
+* npm run postinstall 
+* 
 
 ### Gradle build ###
 * Node Plugin: https://github.com/srs/gradle-node-plugin
