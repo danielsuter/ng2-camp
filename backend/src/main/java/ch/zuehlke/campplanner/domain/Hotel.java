@@ -17,6 +17,8 @@ public class Hotel {
     private String city;
     private String countryCode;
     private String website;
+    private String tripAdvisorUrl;
+    private String holidayCheckUrl;
     private int rooms;
 
     public Long getId() {
@@ -77,5 +79,21 @@ public class Hotel {
 
     public void setRooms(int rooms) {
         this.rooms = rooms;
+    }
+
+    public String getTripAdvisorUrl() {
+        return tripAdvisorUrl;
+    }
+
+    public void setTripAdvisorUrl(String tripAdvisorUrl) {
+        this.tripAdvisorUrl = tripAdvisorUrl;
+    }
+
+    public String getHolidayCheckUrl() {
+        return holidayCheckUrl;
+    }
+
+    public void setHolidayCheckUrl(String holidayCheckUrl) {
+        this.holidayCheckUrl = holidayCheckUrl;
     }
 }
