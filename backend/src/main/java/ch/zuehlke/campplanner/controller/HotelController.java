@@ -4,10 +4,7 @@ import ch.zuehlke.campplanner.dao.HotelRepository;
 import ch.zuehlke.campplanner.domain.Hotel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -34,7 +31,7 @@ public class HotelController {
 
     @Transactional
     @RequestMapping(method = RequestMethod.POST)
-    public void addOrUpdate(Hotel hotel) {
+    public void addOrUpdate(@RequestBody Hotel hotel) {
         hotelRepository.save(hotel);
     }
 
