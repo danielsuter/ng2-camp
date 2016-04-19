@@ -20,11 +20,11 @@ jar {
 	version = '0.0.1-SNAPSHOT'
 	
 	into('static') {
-		from ('../frontend/src')
+		from ('../frontend/dist')
 	}
 }
 
-jar.dependsOn ":frontend:npmInstall"
+jar.dependsOn ":frontend:npm_run_build"
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
