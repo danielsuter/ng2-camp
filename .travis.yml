@@ -4,4 +4,4 @@ node_js:
 notifications:
   slack: ng-camp:aXB3psuLzMhyiqGoDglEu6Sv
 
-cd frontend && npm install && npm run ci
+script: cd frontend && npm install && npm run ci
