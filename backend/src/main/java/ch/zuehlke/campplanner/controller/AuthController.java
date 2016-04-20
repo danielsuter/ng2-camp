@@ -27,7 +27,5 @@ public class AuthController {
         if(auth != null) {
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
-        Authentication auth2 = SecurityContextHolder.getContext().getAuthentication();
-        System.out.println(auth2);
     }
 }
