@@ -34,6 +34,7 @@ repositories {
 }
 
 configurations {
+	// Comes from postgres dependency. SpringBoot uses a different logging framework by default.
 	all*.exclude group: 'ch.qos.logback'
 }
 
