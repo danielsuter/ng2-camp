@@ -15,6 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping("/rest/auth")
 public class AuthController {
 
+    // TODO danielsuter add User object, which can be queried by webservice
+    // containing name and roles
+
     @RequestMapping(value = "/whoami", method = RequestMethod.GET)
     public String whoami() {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
