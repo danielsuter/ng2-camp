@@ -12,5 +12,14 @@ buildscript {
     }
 }
 
+node {
+  version = '5.10.1'
+  npmVersion = '3.8.1'
+
+  // If true, it will download node using above parameters.
+  // If false, it will try to use globally installed node.
+  download = true
+}
+
 // Make sure we always get the latest dependencies
 tasks.npmInstall.outputs.upToDateWhen { return false }
