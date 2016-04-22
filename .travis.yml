@@ -16,7 +16,7 @@ before_script:
 branches:
   only: master
 
-script: cd frontend && npm run ci
+script: cd frontend && npm run test
 
 cache:
   directories: node_modules
