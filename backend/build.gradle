@@ -61,3 +61,8 @@ eclipse {
 task wrapper(type: Wrapper) {
 	gradleVersion = '2.12'
 }
+
+// Required by heroku
+task stage {
+	dependsOn build
+}
