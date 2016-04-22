@@ -65,4 +65,5 @@ task wrapper(type: Wrapper) {
 // Required by heroku
 task stage {
 	dependsOn build
+	dependsOn ":frontend:npm_run_build"
 }
