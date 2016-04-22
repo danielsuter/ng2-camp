@@ -4,10 +4,19 @@ node_js:
 notifications:
   slack: ng-camp:aXB3psuLzMhyiqGoDglEu6Sv
   
-before_script:
+before_install:
+  - export CHROME_BIN=chromium-browser
   - export DISPLAY=:99.0
+  
+before_script:
   - sh -e /etc/init.d/xvfb start
-  - cd frontend && npm install && npm run webdriver:update
-  - sleep 1 # give server time to start
+  # - nohup bash -c webdriver-manager start 2>&1 & 
+  - sleep 1  # give server time to start
+  
+branches:
+  only: master
 
 script: cd frontend && npm run ci
+
+cache:
+  directories: node_modules
