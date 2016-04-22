@@ -46,6 +46,7 @@ dependencies {
 	compile("org.springframework.boot:spring-boot-starter-security")
 	runtime('org.hsqldb:hsqldb')
 	runtime('org.postgresql:postgresql:9.4-1200-jdbc41')
+	compile('org.flywaydb:flyway-core')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
