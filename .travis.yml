@@ -3,5 +3,11 @@ node_js:
   - "5"
 notifications:
   slack: ng-camp:aXB3psuLzMhyiqGoDglEu6Sv
+  
+before_script:
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - cd frontend && npm run webdriver:update
+  - sleep 1 # give server time to start
 
-script: cd frontend && npm install && npm run test
+script: cd frontend && npm install && npm run ci
