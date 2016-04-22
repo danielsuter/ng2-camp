@@ -19,6 +19,8 @@ node {
   // If true, it will download node using above parameters.
   // If false, it will try to use globally installed node.
   download = true
+
+  nodeModulesDir = file("${project.projectDir}")
 }
 
 // Make sure we always get the latest dependencies
