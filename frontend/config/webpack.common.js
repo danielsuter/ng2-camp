@@ -138,6 +138,17 @@ module.exports = {
       },
 
       /*
+       * Sass support
+       *
+       * See: https://github.com/AngularClass/angular2-webpack-starter/wiki/How-to-include-SCSS-in-components
+       */
+      {
+        test: /\.scss$/,
+        exclude: /node_modules/,
+        loaders: ['raw-loader', 'sass-loader'] // sass-loader not scss-loader
+      },
+
+      /*
        * Json loader support for *.json files.
        *
        * See: https://github.com/webpack/json-loader
