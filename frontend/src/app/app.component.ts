@@ -2,6 +2,9 @@ import {Component, ViewEncapsulation} from 'angular2/core';
 
 @Component({
   selector: 'app',
+  styles: [
+    require('../assets/css/main.scss')
+  ],
   encapsulation: ViewEncapsulation.None,
   template: `
     <header>
