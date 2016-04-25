@@ -20,3 +20,8 @@ script: cd frontend && npm install && npm run test
 
 cache:
   directories: node_modules
+deploy:
+  provider: heroku
+  api_key:
+      secure: "8eb24951-75b1-4b6b-89c6-cec5f96185e1"
+  app: ze-campplanner
