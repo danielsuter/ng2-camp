@@ -47,7 +47,7 @@ module.exports = {
     /**
      * Make sure root is src
      */
-    root: helpers.root('src'),
+    root: helpers.root('src')
 
   },
 
@@ -131,6 +131,13 @@ module.exports = {
       { test: /\.json$/, loader: 'json-loader', exclude: [helpers.root('src/index.html')] },
 
       /**
+       * Sass loader support for *.scss files.
+       *
+       * See: https://github.com/AngularClass/angular2-webpack-starter/wiki/How-to-include-SCSS-in-components
+       */
+      { test: /\.scss$/, loaders: ['raw-loader', 'sass-loader'], exclude: /node_modules/ },
+
+      /**
        * Raw loader support for *.css files
        * Returns file content as string
        *
@@ -196,9 +203,9 @@ module.exports = {
       'process.env': {
         'ENV': JSON.stringify(ENV),
         'NODE_ENV': JSON.stringify(ENV),
-        'HMR': false,
+        'HMR': false
       }
-    }),
+    })
 
 
   ],
