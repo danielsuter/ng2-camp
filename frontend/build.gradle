@@ -23,5 +23,7 @@ node {
   nodeModulesDir = file("${project.projectDir}")
 }
 
+npm_run_build.dependsOn npmInstall
+
 // Make sure we always get the latest dependencies
 tasks.npmInstall.outputs.upToDateWhen { return false }
