@@ -44,6 +44,6 @@ export class HotelsComponent {
   public byRooms: (a: Hotel, b: Hotel) => number = (h1, h2) => h1.rooms - h2.rooms;
 
   constructor(private hotelService: HotelService) {
-    this.hotelService.getHotelsDelayed().then(hotels => this.hotels = hotels);
+    this.hotelService.getHotels().subscribe(hotels => this.hotels = hotels);
   }
 }

@@ -47,9 +47,11 @@ export class Hotel {
   template: `
 <div class="row">
   <h1>Hotels</h1>
-  <div class="col m12">
-      <hotels></hotels>
-  </div>
+   <div class="col m12">
+        <div class="card-panel">
+            <hotels></hotels>
+        </div>
+   </div>
 </div>
 `
 })
