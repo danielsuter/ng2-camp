@@ -13,14 +13,12 @@ buildscript {
 }
 
 node {
-  version = '5.10.1'
-  npmVersion = '3.8.1'
+  //version = '5.10.1'
+  //npmVersion = '3.8.1'
 
   // If true, it will download node using above parameters.
   // If false, it will try to use globally installed node.
   download = false
-
-  nodeModulesDir = file("${project.projectDir}")
 }
 
 npm_run_buildgradle.dependsOn npmInstall
