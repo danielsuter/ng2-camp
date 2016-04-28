@@ -1,32 +1,28 @@
 import {Component} from 'angular2/core';
 import {Hotel} from './app.component';
 import {HotelService} from './hotel.service';
+import {SortableHeaderComponent, Sorter} from './table/sortable-header.component';
 
 @Component({
   selector: 'hotels',
+  directives: [SortableHeaderComponent],
   providers: [HotelService],
   template: `
 <table class="responsive-table striped">
     <thead>
     <tr>
-        <!--<th data-field="id">ID</th>-->
-        <th data-field="name" (click)="sort(byName)">Name<i class="tiny material-icons" [ngClass]="{'hidden-icon': !isSorted(byName)}">swap_vert</i></th>
-        <!--<th data-field="description">Description</th>-->
-        <!--<th data-field="zipCode">Zip code</th>-->
-        <th data-field="city" (click)="sort(byCity)">City<i class="tiny material-icons" [ngClass]="{'hidden-icon': !isSorted(byCity)}">swap_vert</i></th>
-        <th data-field="countryCode" (click)="sort(byCountry)">Country<i class="tiny material-icons" [ngClass]="{'hidden-icon': !isSorted(byCountry)}">swap_vert</i></th>
-        <th data-field="website" (click)="sort(byWebsite)">Website<i class="tiny material-icons" [ngClass]="{'hidden-icon': !isSorted(byWebsite)}">swap_vert</i></th>
-        <th data-field="tripAdvisorUrl">Trip advisor</th>
-        <th data-field="rooms" (click)="sort(byRooms)">Rooms<i class="tiny material-icons" [ngClass]="{'hidden-icon': !isSorted(byRooms)}">swap_vert</i></th>
+        <th><sortable-header [name]="'Name'" [sorter]="sorter" [compareFunction]="byName"></sortable-header></th>
+        <th><sortable-header [name]="'City'" [sorter]="sorter" [compareFunction]="byCity"></sortable-header></th>
+        <th><sortable-header [name]="'Country'" [sorter]="sorter" [compareFunction]="byCountry"></sortable-header></th>
+        <th><sortable-header [name]="'Website'" [sorter]="sorter" [compareFunction]="byWebsite"></sortable-header></th>
+        <th><sortable-header [name]="'Trip advisor'"></sortable-header></th>
+        <th><sortable-header [name]="'Rooms'" [sorter]="sorter" [compareFunction]="byRooms"></sortable-header></th>
     </tr>
     </thead>
     
     <tbody>
-    <tr *ngFor="#hotel of hotelsSorted()">
-        <!--<td>ID</td>-->
+    <tr *ngFor="#hotel of sorter.sort(hotels)">
         <td>{{hotel.name}}</td>
-        <!--<td>Description</td>-->
-        <!--<td>Zip code</td>-->
         <td>{{hotel.city}}</td>
         <td>{{hotel.countryCode}}</td>
         <td><a href="{{hotel.website}}" target="_blank">{{hotel.domain()}}</a></td>
@@ -37,10 +33,9 @@ import {HotelService} from './hotel.service';
 `
 })
 export class HotelsComponent {
-  // @Input()
-  hotels: Hotel[];
+  public hotels: Hotel[];
 
-  private reverse: boolean = false;
+  public sorter: Sorter<Hotel> = new Sorter<Hotel>();
 
   public byName: (a: Hotel, b: Hotel) => number = (h1, h2) => h1.name.localeCompare(h2.name);
   public byCity: (a: Hotel, b: Hotel) => number = (h1, h2) => h1.city.localeCompare(h2.city);
@@ -51,30 +46,4 @@ export class HotelsComponent {
   constructor(private hotelService: HotelService) {
     this.hotelService.getHotelsDelayed().then(hotels => this.hotels = hotels);
   }
-
-  hotelsSorted(): Hotel[] {
-    if (this.hotels === undefined) {
-      return [];
-    }
-    let sorted: Hotel[] = this.hotels.sort(this.compareFunction);
-    if (this.reverse) {
-      sorted = sorted.reverse();
-    }
-    return sorted;
-  }
-
-  public isSorted(compareFunction: (a: Hotel, b: Hotel) => number): boolean {
-    return this.compareFunction === compareFunction;
-  }
-
-  public sort(compareFunction: (a: Hotel, b: Hotel) => number): void {
-    if (this.isSorted(compareFunction)) {
-      this.reverse = !this.reverse;
-    } else {
-      this.reverse = false;
-    }
-    this.compareFunction = compareFunction;
-  }
-
-  private compareFunction: (a: Hotel, b: Hotel) => number = (h1, h2) => 0;
 }
