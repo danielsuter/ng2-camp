@@ -28,6 +28,10 @@ export class Sorter<T> {
     return sorted;
   }
 
+  public isReverse(): boolean {
+    return this.reverse;
+  }
+
   private compareFunction: (a: T, b: T) => number = (a: T, b: T) => 0;
 }
 
@@ -35,11 +39,8 @@ export class Sorter<T> {
   selector: 'sortable-header',
   providers: [],
   template: `
-{{name}}
-<i class="tiny material-icons"
-[ngClass]="{'hidden-icon': !sorter?.isSorted(compareFunction)}"
-(click)="sorter?.setSorted(compareFunction)">
-    swap_vert
+{{name}}<i class="tiny material-icons" [ngClass]="{'hidden-icon': !sorter?.isSorted(compareFunction)}">
+    {{sorter?.isReverse()?'arrow_upward':'arrow_downward'}}
 </i>
 `
 })
