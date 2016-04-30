@@ -1,5 +1,5 @@
 import {Component, ViewEncapsulation} from 'angular2/core';
-import {HotelsComponent} from './hotel-overview/hotels.component.ts';
+import {HotelsComponent} from './components/hotel-overview/hotels.component';
 import {MaterializeDirective} from 'angular2-materialize';
 
 @Component({
@@ -12,7 +12,4 @@ import {MaterializeDirective} from 'angular2-materialize';
   template: require('./app.template.html')
 })
 export class App {
-  constructor() {
-
-  }
 }
