@@ -2,6 +2,7 @@
  * @author: @AngularClass
  */
 
+const webpack = require('webpack');
 const helpers = require('./helpers');
 
 /**
@@ -36,6 +37,15 @@ module.exports = {
    * See: http://webpack.github.io/docs/configuration.html#resolve
    */
   resolve: {
+
+    /*
+     * Alias for angular2-materialize dependencies
+     *
+     * See: https://github.com/InfomediaLtd/angular2-materialize
+     */
+    alias: {
+      materialize: 'materialize-css/dist/js/materialize.js'
+    },
 
     /**
      * An array of extensions that should be used to resolve modules.
@@ -205,8 +215,19 @@ module.exports = {
         'NODE_ENV': JSON.stringify(ENV),
         'HMR': false
       }
-    })
+    }),
 
+    /*
+     * Plugin for angular2-materialize dependencies
+     *
+     * See: https://github.com/InfomediaLtd/angular2-materialize
+     */
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery",
+      "window.jQuery": "jquery",
+      Hammer: "hammerjs/hammer"
+    })
 
   ],
 
