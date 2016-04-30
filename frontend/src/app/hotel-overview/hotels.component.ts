@@ -5,7 +5,6 @@ import {Hotel} from './../model/hotel.model.ts';
 
 @Component({
   selector: 'hotels',
-  moduleId: module.id,
   directives: [],
   providers: [HotelService],
   template: require('./hotels.template.html')
