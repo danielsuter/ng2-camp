@@ -9,16 +9,7 @@ import {MaterializeDirective} from 'angular2-materialize';
     require('../assets/css/main.scss')
   ],
   encapsulation: ViewEncapsulation.None,
-  template: `
-<div class="row">
-  <h1>Hotels</h1>
-   <div class="col m12">
-        <div class="card-panel">
-            <hotels></hotels>
-        </div>
-   </div>
-</div>
-`
+  template: require('./app.template.html')
 })
 export class App {
   constructor() {
