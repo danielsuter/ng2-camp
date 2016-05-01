@@ -19,7 +19,7 @@ import {App} from './app/app.component';
  * Bootstrap our Angular app with a top level component `App` and inject
  * our Services and Providers into Angular's dependency injection
  */
-export function main(initialHmrState?: any): Promise<any> {
+export function main(): Promise<any> {
 
   return bootstrap(App, [
     ...PROVIDERS,
@@ -43,15 +43,6 @@ export function main(initialHmrState?: any): Promise<any> {
  */
 
 
-/*
- * Hot Module Reload
- * experimental version by @gdi2290
- */
-if ('development' === ENV && HMR === true) {
-  // activate hot module reload
-  let ngHmr = require('angular2-hmr');
-  ngHmr.hotModuleReplacement(main, module);
-} else {
-  // bootstrap when documetn is ready
+if ('development' === ENV) {
   document.addEventListener('DOMContentLoaded', () => main());
 }
