@@ -1,6 +1,6 @@
 <table class="responsive-table striped">
   <tbody>
-  <tr *ngFor="#hotel of hotels | async">
+  <tr *ngFor="let hotel of hotels | async">
     <td>{{hotel.name}}</td>
     <td>{{hotel.city}}</td>
     <td>{{hotel.countryCode}}</td>
