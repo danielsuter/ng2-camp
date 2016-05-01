@@ -57,3 +57,7 @@ npm-debug.log
 # IDE #
 .idea/
 *.swp
+
+# Gradle #
+.gradle
+build

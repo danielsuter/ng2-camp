@@ -24,7 +24,7 @@ jar {
 	}
 }
 
-jar.dependsOn ":frontend:npm_run_build"
+jar.dependsOn ":frontend:npmBuildProd"
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -65,5 +65,5 @@ task wrapper(type: Wrapper) {
 // Required by heroku
 task stage {
 	dependsOn build
-	dependsOn ":frontend:npm_run_build"
+	dependsOn ":frontend:npmBuildProd"
 }
