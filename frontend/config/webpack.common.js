@@ -63,6 +63,15 @@ module.exports = {
   resolve: {
 
     /*
+     * Alias for angular2-materialize dependencies
+     *
+     * See: https://github.com/InfomediaLtd/angular2-materialize
+     */
+    alias: {
+      materialize: 'materialize-css/dist/js/materialize.js'
+    },
+
+    /*
      * An array of extensions that should be used to resolve modules.
      *
      * See: http://webpack.github.io/docs/configuration.html#resolve-extensions
@@ -245,6 +254,18 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'src/index.html',
       chunksSortMode: helpers.packageSort(['polyfills', 'vendor', 'main'])
+    }),
+
+    /*
+     * Plugin for angular2-materialize dependencies
+     *
+     * See: https://github.com/InfomediaLtd/angular2-materialize
+     */
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery",
+      "window.jQuery": "jquery",
+      Hammer: "hammerjs/hammer"
     })
 
   ],
