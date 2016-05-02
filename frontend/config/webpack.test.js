@@ -2,6 +2,7 @@
  * @author: @AngularClass
  */
 
+const webpack = require('webpack');
 const helpers = require('./helpers');
 
 /**
@@ -36,6 +37,15 @@ module.exports = {
    * See: http://webpack.github.io/docs/configuration.html#resolve
    */
   resolve: {
+
+    /*
+     * Alias for angular2-materialize dependencies
+     *
+     * See: https://github.com/InfomediaLtd/angular2-materialize
+     */
+    alias: {
+      materialize: 'materialize-css/dist/js/materialize.js'
+    },
 
     /**
      * An array of extensions that should be used to resolve modules.
@@ -154,30 +164,6 @@ module.exports = {
       { test: /\.html$/, loader: 'raw-loader', exclude: [helpers.root('src/index.html')] }
 
     ],
-
-    /**
-     * An array of applied pre and post loaders.
-     *
-     * See: http://webpack.github.io/docs/configuration.html#module-preloaders-module-postloaders
-     */
-    postLoaders: [
-
-      /**
-       * Instruments JS files with Istanbul for subsequent code coverage reporting.
-       * Instrument only testing sources.
-       *
-       * See: https://github.com/deepsweet/istanbul-instrumenter-loader
-       */
-      {
-        test: /\.(js|ts)$/, loader: 'istanbul-instrumenter-loader',
-        include: helpers.root('src'),
-        exclude: [
-          /\.(e2e|spec)\.ts$/,
-          /node_modules/
-        ]
-      }
-
-    ]
   },
 
   /**
@@ -199,14 +185,23 @@ module.exports = {
     // NOTE: when adding more properties make sure you include them in custom-typings.d.ts
     new DefinePlugin({
       'ENV': JSON.stringify(ENV),
-      'HMR': false,
       'process.env': {
         'ENV': JSON.stringify(ENV),
         'NODE_ENV': JSON.stringify(ENV),
-        'HMR': false
       }
-    })
+    }),
 
+    /*
+     * Plugin for angular2-materialize dependencies
+     *
+     * See: https://github.com/InfomediaLtd/angular2-materialize
+     */
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery",
+      "window.jQuery": "jquery",
+      Hammer: "hammerjs/hammer"
+    })
 
   ],
 

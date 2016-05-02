@@ -25,6 +25,7 @@ import 'rxjs/add/operator/mergeMap';
 // import '@angular2-material/progress-circle';
 // import '@angular2-material/card';
 // look in platform/directives and platform/providers
+import 'angular2-materialize';
 
 if ('production' === ENV) {
   // Production
