@@ -1,5 +1,4 @@
 import {Component} from 'angular2/core';
-import {Hotel} from './../../model/hotel.model.ts';
 
 @Component({
   selector: 'hotel-detail',

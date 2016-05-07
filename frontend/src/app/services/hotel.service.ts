@@ -11,7 +11,7 @@ export class HotelService {
 
   getHotels(): Observable<Hotel[]> {
     // const queryUrl: string = `http://localhost:8080/rest/hotels`;
-    const queryUrl: string = `http://beta.json-generator.com/api/json/get/NkpdDDTeb`;
+    const queryUrl = `http://beta.json-generator.com/api/json/get/NkpdDDTeb`;
     return this.http.get(queryUrl)
       .map((res: Response) => res.json());
   }
