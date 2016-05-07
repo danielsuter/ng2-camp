@@ -4,7 +4,7 @@ import {Component} from '@angular/core';
   selector: 'hotel-detail',
   directives: [],
   providers: [],
-  template: require('./hotelDetail.template.html')
+  template: require('./hotel-detail.component.html')
 })
 export class HotelDetailComponent {
 
