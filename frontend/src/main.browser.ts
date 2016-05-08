@@ -29,7 +29,7 @@ export function main(): Promise<any> {
     ...DIRECTIVES,
     ...PIPES,
     FIREBASE_PROVIDERS,
-    defaultFirebase('https://blistering-heat-1745.firebaseio.com/')
+    defaultFirebase('https://ng-camp.firebaseio.com/')
   ])
   .catch(err => console.error(err));
 

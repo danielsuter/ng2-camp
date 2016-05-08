@@ -19,6 +19,6 @@ export class HotelService {
   }
 
   getHotelsFromFirebase(): Observable<Hotel[]> {
-    return this.angularFire.list('/');
+    return this.angularFire.list('/hotels');
   }
 }
