@@ -8,6 +8,8 @@ import {bootstrap} from '@angular/platform-browser-dynamic';
 */
 import {DIRECTIVES, PIPES, PROVIDERS} from './platform/browser';
 import {ENV_PROVIDERS} from './platform/environment';
+import { FIREBASE_PROVIDERS, defaultFirebase } from 'angularfire2';
+
 
 /*
 * App Component
@@ -26,6 +28,8 @@ export function main(): Promise<any> {
     ...ENV_PROVIDERS,
     ...DIRECTIVES,
     ...PIPES,
+    FIREBASE_PROVIDERS,
+    defaultFirebase('https://blistering-heat-1745.firebaseio.com/')
   ])
   .catch(err => console.error(err));
 

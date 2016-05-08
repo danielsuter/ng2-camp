@@ -27,6 +27,9 @@ import 'rxjs/add/operator/mergeMap';
 // look in platform/directives and platform/providers
 import 'angular2-materialize';
 
+import 'angularfire2';
+import 'firebase';
+
 if ('production' === ENV) {
   // Production
 
