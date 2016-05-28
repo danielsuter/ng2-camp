@@ -1,11 +1,19 @@
-<table class="responsive-table striped">
-  <tbody>
-  <tr *ngFor="let hotel of hotels | async">
-    <td>{{hotel.name}}</td>
-    <td>{{hotel.city}}</td>
-    <td>{{hotel.countryCode}}</td>
-    <td><a href="{{hotel.website}}" target="_blank">{{hotel.website}}</a></td>
-    <td><a href="{{hotel.tripAdvisorUrl}}" target="_blank">Trip advisor</a></td>
-    <td>{{hotel.rooms}}</td>
-  </tr>
-</table>
+
+<div class="row">
+  <h1>Hotels</h1>
+  <div class="col m12">
+    <div class="card-panel">
+      <table class="responsive-table striped">
+        <tbody>
+        <tr *ngFor="let hotel of hotels | async">
+          <td>{{hotel.name}}</td>
+          <td>{{hotel.city}}</td>
+          <td>{{hotel.countryCode}}</td>
+          <td><a href="{{hotel.website}}" target="_blank">{{hotel.website}}</a></td>
+          <td><a href="{{hotel.tripAdvisorUrl}}" target="_blank">Trip advisor</a></td>
+          <td>{{hotel.rooms}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
