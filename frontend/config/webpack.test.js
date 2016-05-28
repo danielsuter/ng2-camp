@@ -98,7 +98,7 @@ module.exports = {
         exclude: [
         // these packages have problems with their sourcemaps
         helpers.root('node_modules/rxjs'),
-        helpers.root('node_modules/@angular2-material')
+        helpers.root('node_modules/@angular')
       ]}
 
     ],
@@ -164,6 +164,30 @@ module.exports = {
       { test: /\.html$/, loader: 'raw-loader', exclude: [helpers.root('src/index.html')] }
 
     ],
+
+    /**
+     * An array of applied pre and post loaders.
+     *
+     * See: http://webpack.github.io/docs/configuration.html#module-preloaders-module-postloaders
+     */
+    postLoaders: [
+
+      /**
+       * Instruments JS files with Istanbul for subsequent code coverage reporting.
+       * Instrument only testing sources.
+       *
+       * See: https://github.com/deepsweet/istanbul-instrumenter-loader
+       */
+      {
+        test: /\.(js|ts)$/, loader: 'istanbul-instrumenter-loader',
+        include: helpers.root('src'),
+        exclude: [
+          /\.(e2e|spec)\.ts$/,
+          /node_modules/
+        ]
+      }
+
+    ]
   },
 
   /**

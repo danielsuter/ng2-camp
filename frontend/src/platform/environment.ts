@@ -1,6 +1,6 @@
 
 // Angular 2
-import {enableProdMode} from '@angular/core';
+import { enableProdMode } from '@angular/core';
 
 // Environment Providers
 let PROVIDERS = [];
@@ -10,13 +10,13 @@ if ('production' === ENV) {
   enableProdMode();
 
   PROVIDERS = [
-    ...PROVIDERS,
+    ...PROVIDERS
   ];
 
 } else {
   // Development
   PROVIDERS = [
-    ...PROVIDERS,
+    ...PROVIDERS
   ];
 
 }
