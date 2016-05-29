@@ -1,4 +1,4 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import {Component, ViewEncapsulation, OnInit} from '@angular/core';
 import {NavigationComponent} from './components/navigation/navigation.component';
 import {HotelsComponent} from './components/hotel-overview/hotels.component';
 
@@ -12,10 +12,7 @@ import {HotelsComponent} from './components/hotel-overview/hotels.component';
   encapsulation: ViewEncapsulation.None,
   template: require('./app.template.html')
 })
-export class App {
-
-  constructor() {
-  }
+export class App implements OnInit {
 
   ngOnInit() {
 

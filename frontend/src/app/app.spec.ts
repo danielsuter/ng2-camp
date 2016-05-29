@@ -1,7 +1,7 @@
 import {
   it,
   inject,
-  beforeEachProviders,
+  beforeEachProviders
 } from '@angular/core/testing';
 
 // Load the implementations that should be tested
