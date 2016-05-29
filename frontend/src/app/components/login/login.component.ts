@@ -1,13 +1,12 @@
 import {Component} from '@angular/core';
 import {HotelService} from './../../shared/hotel.service.ts';
-import {ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from '@angular/router-deprecated';
 import {AuthService} from '../../shared/auth.service';
 import {MaterializeDirective} from 'angular2-materialize';
 
 @Component({
   selector: 'login',
-  directives: [ROUTER_DIRECTIVES, MaterializeDirective],
-  providers: [HotelService, ROUTER_PROVIDERS, AuthService],
+  directives: [MaterializeDirective],
+  providers: [HotelService, AuthService],
   template: require('./login.component.html')
 })
 export class LoginComponent {

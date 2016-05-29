@@ -1,5 +1,5 @@
 import {Component, ViewEncapsulation} from '@angular/core';
-import {Routes, Router, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from '@angular/router';
+import {Routes, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from '@angular/router';
 import {NavigationComponent} from './components/navigation/navigation.component';
 import {HomeComponent} from './components/home/hotel-detail.component';
 import {HotelsComponent} from './components/hotel-overview/hotels.component';
@@ -23,7 +23,7 @@ import {LoginComponent} from './components/login/login.component';
 ])
 export class App {
 
-  constructor(private router: Router) {
+  constructor() {
   }
 
   ngOnInit() {
