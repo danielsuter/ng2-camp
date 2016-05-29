@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
-import {Router} from '@angular/router-deprecated';
-import {AuthHttp, tokenNotExpired} from 'angular2-jwt';
+import {Router} from '@angular/router';
+import {tokenNotExpired} from 'angular2-jwt';
 
 @Injectable()
-export class Auth {
+export class AuthService {
 
   constructor(private router: Router) {
   }
@@ -12,21 +12,14 @@ export class Auth {
     return tokenNotExpired();
   }
 
-  public login(username: string, passwor: string) {
-    // Show the Auth0 Lock widget
-    // this.lock.show({}, (err, profile, token) => {
-    //   if (err) {
-    //     alert(err);
-    //     return;
-    //   }
-    //   // If authentication is successful, save the items
-    //   // in local storage
-    //   localStorage.setItem('id_token', token);
-    // });
+  public login(username: string, password: string) {
+    console.log(username, password);
+    localStorage.setItem('id_token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ');
+    this.router.navigate(['/hotels']);
   }
 
   public logout() {
     localStorage.removeItem('id_token');
-    this.router.navigate(['Home']);
+    this.router.navigate(['/home']);
   }
 }

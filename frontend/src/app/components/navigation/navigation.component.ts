@@ -1,15 +1,16 @@
 import {Component} from '@angular/core';
 import {Router, ROUTER_DIRECTIVES} from '@angular/router';
+import {AuthService} from '../../shared/auth.service';
 
 @Component({
   selector: 'navigation',
   directives: [ROUTER_DIRECTIVES],
-  providers: [],
+  providers: [AuthService],
   template: require('./navigation.component.html')
 })
 export class NavigationComponent {
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private auth: AuthService) {
   }
 
   home() {
@@ -22,5 +23,9 @@ export class NavigationComponent {
 
   login() {
     this.router.navigate(['/login']);
+  }
+
+  logout() {
+    this.auth.logout();
   }
 }
