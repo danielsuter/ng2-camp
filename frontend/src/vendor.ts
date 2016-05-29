@@ -9,7 +9,8 @@ import '@angular/platform-browser-dynamic';
 import '@angular/core';
 import '@angular/common';
 import '@angular/http';
-import '@angular/router-deprecated';
+import '@ngrx/core';
+import '@ngrx/router';
 
 // RxJS
 import 'rxjs/add/operator/map';

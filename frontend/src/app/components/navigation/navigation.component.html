@@ -2,9 +2,9 @@
   <div class="nav-wrapper">
     <a href="#" class="brand-logo right">ng-camp</a>
     <ul id="nav-mobile" class="left hide-on-med-and-down">
-      <li><a (click)="home()">Home</a></li>
-      <li *ngIf="auth.authenticated()"><a (click)="hotels()">Hotels</a></li>
-      <li *ngIf="!auth.authenticated()"><a (click)="login()">Login</a></li>
+      <li><a [linkTo]="'/'">Home</a></li>
+      <li *ngIf="auth.authenticated()"><a [linkTo]="'/hotels'">Hotels</a></li>
+      <li *ngIf="!auth.authenticated()"><a [linkTo]="'/login'">Login</a></li>
       <li *ngIf="auth.authenticated()"><a (click)="logout()">Logout</a></li>
     </ul>
   </div>

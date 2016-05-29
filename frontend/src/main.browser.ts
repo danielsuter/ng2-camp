@@ -9,6 +9,8 @@ import {bootstrap} from '@angular/platform-browser-dynamic';
 import {DIRECTIVES, PIPES, PROVIDERS} from './platform/browser';
 import {ENV_PROVIDERS} from './platform/environment';
 import {AUTH_PROVIDERS} from 'angular2-jwt';
+import { provideRouter } from '@ngrx/router';
+import { routes } from 'app/routes';
 
 /*
  * App Component
@@ -27,7 +29,8 @@ export function main(): Promise<any> {
     ...ENV_PROVIDERS,
     ...DIRECTIVES,
     ...PIPES,
-    ...AUTH_PROVIDERS
+    ...AUTH_PROVIDERS,
+    provideRouter(routes)
   ])
     .catch(err => console.error(err));
 

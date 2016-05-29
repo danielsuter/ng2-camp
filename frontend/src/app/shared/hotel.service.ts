@@ -2,14 +2,13 @@ import {Injectable} from '@angular/core';
 import {Http, Response} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import {Subject} from 'rxjs/Subject';
-import {Router} from '@angular/router';
-import {Hotel} from './../model/hotel.model.ts';
 import 'rxjs/add/operator/map';
+import {Router} from '@ngrx/router';
 import {AuthHttp} from 'angular2-jwt';
+import {Hotel} from './../model/hotel.model.ts';
 
 @Injectable()
 export class HotelService {
-
 
   constructor(private http: Http, private authHttp: AuthHttp, private router: Router) {
   }
@@ -41,7 +40,7 @@ export class HotelService {
     console.log('error', error);
     if (error.message === 'No JWT present') {
       console.log('no JWT');
-      this.router.navigate(['/login']);
+      this.router.go('/login');
     }
   }
 }
