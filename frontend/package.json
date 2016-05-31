@@ -13,6 +13,7 @@
     "webdriver-manager": "webdriver-manager",
     "protractor": "protractor",
     "clean": "npm cache clean && npm run rimraf -- node_modules doc typings dist",
+    "clean:dist": "npm run rimraf -- dist",
     "watch": "npm run watch:dev",
     "watch:dev": "npm run build:dev -- --watch",
     "watch:test": "npm run test -- --auto-watch --no-single-run",
