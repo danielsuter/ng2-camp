@@ -17,6 +17,7 @@
     "./src/platform/**/*.ts",
     "!./node_modules/**",
     "./src/custom-typings.d.ts",
+    "./src/backend-typings.d.ts",
     "./typings/index.d.ts"
   ],
   "awesomeTypescriptLoaderOptions": {
