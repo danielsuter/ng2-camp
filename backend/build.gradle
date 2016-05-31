@@ -71,7 +71,8 @@ task stage {
 }
 
 generateTypeScript {
-	outputFile = '../frontend/src/backend-typings.d.ts'
+	outputFile = '../frontend/src/app/model/backend-typings.ts'
+    outputFileType = 'implementationFile'
 	classes = [
 			'ch.zuehlke.campplanner.domain.Hotel'
 	]

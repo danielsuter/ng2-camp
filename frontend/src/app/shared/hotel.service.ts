@@ -5,7 +5,7 @@ import {Subject} from 'rxjs/Subject';
 import 'rxjs/add/operator/map';
 import {Router} from '@ngrx/router';
 import {AuthHttp} from 'angular2-jwt';
-import {Hotel} from "../../backend-typings";
+import {Hotel} from '../model/backend-typings';
 
 @Injectable()
 export class HotelService {

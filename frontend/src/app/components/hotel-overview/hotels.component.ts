@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {HotelService} from './../../shared/hotel.service.ts';
-import {Hotel} from './../../../backend-typings';
+import {Hotel} from '../../model/backend-typings';
 
 @Component({
   selector: 'hotels',
