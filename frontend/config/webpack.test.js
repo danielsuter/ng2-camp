@@ -164,31 +164,8 @@ module.exports = {
        */
       { test: /\.html$/, loader: 'raw-loader', exclude: [helpers.root('src/index.html')] }
 
-    ],
-
-    /**
-     * An array of applied pre and post loaders.
-     *
-     * See: http://webpack.github.io/docs/configuration.html#module-preloaders-module-postloaders
-     */
-    postLoaders: [
-
-      /**
-       * Instruments JS files with Istanbul for subsequent code coverage reporting.
-       * Instrument only testing sources.
-       *
-       * See: https://github.com/deepsweet/istanbul-instrumenter-loader
-       */
-      {
-        test: /\.(js|ts)$/, loader: 'istanbul-instrumenter-loader',
-        include: helpers.root('src'),
-        exclude: [
-          /\.(e2e|spec)\.ts$/,
-          /node_modules/
-        ]
-      }
-
     ]
+
   },
 
   /**
@@ -212,7 +189,7 @@ module.exports = {
       'ENV': JSON.stringify(ENV),
       'process.env': {
         'ENV': JSON.stringify(ENV),
-        'NODE_ENV': JSON.stringify(ENV),
+        'NODE_ENV': JSON.stringify(ENV)
       }
     }),
 
