@@ -6,14 +6,16 @@ buildscript {
 		mavenCentral()
 	}
 	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}") 
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath group: 'cz.habarta.typescript-generator', name: 'typescript-generator-gradle-plugin', version: '1.8.202'
 	}
 }
 
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'eclipse'
-apply plugin: 'spring-boot' 
+apply plugin: 'spring-boot'
+apply plugin: 'cz.habarta.typescript-generator'
 
 jar {
 	baseName = 'campplanner'
@@ -66,4 +68,13 @@ task wrapper(type: Wrapper) {
 task stage {
 	dependsOn build
 	dependsOn ":frontend:npmBuildProd"
+}
+
+generateTypeScript {
+	outputFile = '../frontend/src/backend-typings.d.ts'
+	classes = [
+			'ch.zuehlke.campplanner.domain.Hotel'
+	]
+	jsonLibrary = 'jackson2'
+	outputKind = 'module'
 }
