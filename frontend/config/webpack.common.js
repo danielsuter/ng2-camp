@@ -42,7 +42,7 @@ module.exports = {
    *
    * See: http://webpack.github.io/docs/configuration.html#cache
    */
-   //cache: false,
+  //cache: false,
 
   /*
    * The entry point for the bundle
@@ -81,7 +81,8 @@ module.exports = {
     alias: {
       // legacy imports pre-rc releases
       'angular2': helpers.root('node_modules/@angularclass/angular2-beta-to-rc-alias/dist/beta-17'),
-      'materialize': 'materialize-css/dist/js/materialize.js'
+      materializecss: 'materialize-css/dist/css/materialize.css',
+      materialize: 'materialize-css/dist/js/materialize.js'
     }
   },
 
@@ -104,7 +105,7 @@ module.exports = {
        *
        * See: https://github.com/wbuchwalter/tslint-loader
        */
-       // { test: /\.ts$/, loader: 'tslint-loader', exclude: [ helpers.root('node_modules') ] },
+      // { test: /\.ts$/, loader: 'tslint-loader', exclude: [ helpers.root('node_modules') ] },
 
       /*
        * Source map loader support for *.js files
@@ -134,6 +135,13 @@ module.exports = {
      * See: http://webpack.github.io/docs/configuration.html#module-loaders
      */
     loaders: [
+
+      {test: /materialize\.css$/, loader: 'style-loader!css-loader'},
+      {
+        test: /materialize-css\/dist\/js\/materialize\.js/,
+        loader: 'imports?materializecss'
+      },
+      {test: /.(png|woff(2)?|eot|ttf|svg)(\?[a-z0-9=\.]+)?$/, loader: 'url-loader?limit=100000'},
 
       /*
        * Typescript loader support for .ts and Angular 2 async routes via .async.ts
@@ -174,7 +182,7 @@ module.exports = {
        * See: https://github.com/webpack/raw-loader
        */
       {
-        test: /\.css$/,
+        test: /^((?!materialize).)*\.css$/,
         loader: 'raw-loader'
       },
 
