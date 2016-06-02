@@ -12,6 +12,7 @@ See http://nodejs.org/download/
 
 Install node modules and typings:
 ```sh
+$ cd frontend
 $ npm install
 ```
 
