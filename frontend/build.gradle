@@ -41,7 +41,8 @@ task npmBuildProd(type: Exec) {
   if (Os.isFamily(Os.FAMILY_WINDOWS)) {
     commandLine 'cmd', '/c', 'npm', 'run', 'build:prod'
   } else {
-    commandLine 'npm', 'run', 'build:prod'
+  // TODO: Use build:dev for the moment, as build:prod does not work for materialize.js
+    commandLine 'npm', 'run', 'build:dev'
   }
 }
 npmBuildProd.dependsOn npmInstall
