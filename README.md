@@ -1,3 +1,5 @@
+# NG-Camp [![Build Status](https://travis-ci.org/joachimprinzbach/ng2-camp.svg?branch=master)](https://travis-ci.org/joachimprinzbach/ng2-camp)
+
 ### Build Backend###
 gradlew build will create a runnable jar at backend/build/libs/
 
