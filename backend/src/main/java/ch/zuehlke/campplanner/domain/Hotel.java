@@ -1,9 +1,6 @@
 package ch.zuehlke.campplanner.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -26,6 +23,7 @@ public class Hotel {
     private String holidayCheckUrl;
     private Integer rooms;
 
+    @OneToMany
     private List<Offer> offers;
 
     public List<Offer> getOffers() {
@@ -65,7 +63,6 @@ public class Hotel {
     }
 
     public void setId(Long id) {
-
         this.id = id;
     }
 

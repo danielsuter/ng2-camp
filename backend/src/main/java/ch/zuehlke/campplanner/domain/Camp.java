@@ -1,9 +1,6 @@
 package ch.zuehlke.campplanner.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
@@ -16,12 +13,18 @@ public class Camp {
     private String name;
     private String team;
 
+	@Temporal(TemporalType.DATE)
     private Date from;
+
+	@Temporal(TemporalType.DATE)
     private Date to;
     private Integer numberOfPeople;
 
+	@OneToMany
     private List<Offer> offers;
-    private List<OfferRequest> offerRequests;
+
+	@OneToMany
+	private List<OfferRequest> offerRequests;
 
     // derzeitge stand (doodle erstellt, datum fixiert, offerte angenommen, hotels abgesagt, ...)
     private String status;

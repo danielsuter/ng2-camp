@@ -1,6 +1,6 @@
 package ch.zuehlke.campplanner.util;
 
-import ch.zuehlke.campplanner.domain.Hotel;
+import ch.zuehlke.campplanner.domain.*;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
@@ -25,6 +25,13 @@ public class SchemaExportTest {
 		Configuration configuration = new Configuration();
 		configuration.setProperty(Environment.DIALECT, dialect);
 		configuration.addAnnotatedClass(Hotel.class);
+		configuration.addAnnotatedClass(Camp.class);
+		configuration.addAnnotatedClass(MailTemplate.class);
+		configuration.addAnnotatedClass(Offer.class);
+		configuration.addAnnotatedClass(OfferRequest.class);
+		configuration.addAnnotatedClass(Rating.class);
+
+
 		configuration.setNamingStrategy(new SpringNamingStrategy());
 
 		SchemaExport schemaExport = new SchemaExport(configuration);

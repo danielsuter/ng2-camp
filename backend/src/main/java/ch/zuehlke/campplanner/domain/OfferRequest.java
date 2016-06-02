@@ -1,9 +1,6 @@
 package ch.zuehlke.campplanner.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -21,8 +18,53 @@ public class OfferRequest {
     }
 
     private Date date;
+
+    @ManyToOne
     private Hotel hotel;
+
+    @Enumerated(EnumType.STRING)
     private RequestStatus status;
+
+	@Temporal(TemporalType.DATE)
     private Date lastStatusChange;
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public Hotel getHotel() {
+		return hotel;
+	}
+
+	public void setHotel(Hotel hotel) {
+		this.hotel = hotel;
+	}
+
+	public RequestStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(RequestStatus status) {
+		this.status = status;
+	}
+
+	public Date getLastStatusChange() {
+		return lastStatusChange;
+	}
+
+	public void setLastStatusChange(Date lastStatusChange) {
+		this.lastStatusChange = lastStatusChange;
+	}
 }

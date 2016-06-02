@@ -1,9 +1,6 @@
 package ch.zuehlke.campplanner.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Currency;
 import java.util.Date;
 
@@ -16,10 +13,16 @@ public class Offer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+	@Temporal(TemporalType.DATE)
     private Date offerDate;
+
+	@Temporal(TemporalType.DATE)
     private Date expirationDate;
 
+	@Temporal(TemporalType.DATE)
     private Date from;
+
+	@Temporal(TemporalType.DATE)
     private Date to;
 
     private Integer singleRooms;
@@ -34,6 +37,7 @@ public class Offer {
 
     private String requestingPerson;
 
+    @ManyToOne
     private Hotel hotel;
 
     public Long getId() {
