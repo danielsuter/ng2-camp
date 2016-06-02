@@ -13,6 +13,6 @@ export class HotelsComponent {
   hotels: Observable<Hotel[]>;
 
   constructor(private hotelService: HotelService) {
-    this.hotels = this.hotelService.getHotels();
+    this.hotels = this.hotelService.getHotelsAuthenticated();
   }
 }
