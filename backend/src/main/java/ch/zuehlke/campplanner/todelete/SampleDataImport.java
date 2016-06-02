@@ -38,6 +38,7 @@ public class SampleDataImport implements ApplicationListener<ContextRefreshedEve
         hotel.setCity(city);
         hotel.setCountryCode(country);
         hotel.setWebsite(website);
+        hotel.setRooms(100);
         return hotel;
     }
 }
