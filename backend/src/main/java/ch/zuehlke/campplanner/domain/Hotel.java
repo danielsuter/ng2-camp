@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.List;
 
 @Entity
 public class Hotel {
@@ -14,12 +15,60 @@ public class Hotel {
     private String name;
     private String description;
     private String zipCode;
+    private String street;
+    private String streetNumber;
     private String city;
     private String countryCode;
     private String website;
+    private String contactEmail;
+
     private String tripAdvisorUrl;
     private String holidayCheckUrl;
-    private int rooms;
+    private Integer rooms;
+
+    private List<Offer> offers;
+
+    public List<Offer> getOffers() {
+        return offers;
+    }
+
+    public void setOffers(List<Offer> offers) {
+        this.offers = offers;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getStreetNumber() {
+        return streetNumber;
+    }
+
+    public void setStreetNumber(String streetNumber) {
+        this.streetNumber = streetNumber;
+    }
+
+    public String getContactEmail() {
+        return contactEmail;
+    }
+
+    public void setContactEmail(String contactEmail) {
+        this.contactEmail = contactEmail;
+    }
+
+    public void setRooms(Integer rooms) {
+        this.rooms = rooms;
+    }
+
+    public void setId(Long id) {
+
+        this.id = id;
+    }
+
 
     public Long getId() {
         return id;
