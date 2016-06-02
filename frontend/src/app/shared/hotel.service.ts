@@ -21,7 +21,7 @@ export class HotelService {
   }
 
   getHotelsAuthenticated(): Observable<Hotel[]> {
-    const queryUrl: string = `http://localhost:8080/rest/hotels`;
+    const queryUrl: string = `https://localhost:8080/rest/hotels`;
 
     let hotelsSubject = new Subject<Response>();
 
