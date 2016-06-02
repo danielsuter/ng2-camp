@@ -23,16 +23,16 @@ public class Hotel {
     private String holidayCheckUrl;
     private Integer rooms;
 
-    @OneToMany
-    private List<Offer> offers;
-
-    public List<Offer> getOffers() {
-        return offers;
-    }
-
-    public void setOffers(List<Offer> offers) {
-        this.offers = offers;
-    }
+//    @OneToMany
+//    private List<Offer> offers;
+//
+//    public List<Offer> getOffers() {
+//        return offers;
+//    }
+//
+//    public void setOffers(List<Offer> offers) {
+//        this.offers = offers;
+//    }
 
     public String getStreet() {
         return street;
