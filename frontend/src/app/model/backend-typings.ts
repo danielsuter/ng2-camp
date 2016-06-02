@@ -1,40 +1,73 @@
-// Generated using typescript-generator version 1.8.202 on 2016-06-02 15:50:56.
 
-export interface Hotel {
+export interface Camp {
+    from: Date;
     id: number;
     name: string;
+    numberOfPeople: number;
+    offerRequests: OfferRequest[];
+    offers: Offer[];
+    status: string;
+    team: string;
+    to: Date;
+}
+
+export interface Currency {
+}
+
+export interface Hotel {
+    city: string;
+    contactEmail: string;
+    countryCode: string;
     description: string;
-    zipCode: string;
+    holidayCheckUrl: string;
+    id: number;
+    name: string;
+    offers: Offer[];
+    rooms: number;
     street: string;
     streetNumber: string;
-    city: string;
-    countryCode: string;
-    website: string;
-    contactEmail: string;
     tripAdvisorUrl: string;
-    holidayCheckUrl: string;
-    rooms: number;
-    offers: Offer[];
+    website: string;
+    zipCode: string;
+}
+
+export interface MailTemplate {
+    id: number;
+    language: string;
+    text: string;
 }
 
 export interface Offer {
-    id: number;
-    offerDate: Date;
-    expirationDate: Date;
-    from: Date;
-    to: Date;
-    singleRooms: number;
-    doubleRooms: number;
     costPerPerson: number;
     currency: Currency;
-    numberOfPeople: number;
     description: string;
-    requestingPerson: string;
+    doubleRooms: number;
+    expirationDate: Date;
+    from: Date;
     hotel: Hotel;
+    id: number;
+    numberOfPeople: number;
+    offerDate: Date;
+    requestingPerson: string;
+    singleRooms: number;
+    to: Date;
 }
 
-export interface Currency extends Serializable {
+export interface OfferRequest {
+    date: Date;
+    hotel: Hotel;
+    id: number;
+    lastStatusChange: Date;
+    status: RequestStatus;
 }
 
-export interface Serializable {
+export interface Rating {
+    date: Date;
+    description: string;
+    hotel: Hotel;
+    id: number;
+    person: string;
+    ratingFrom1To5: number;
 }
+
+export type RequestStatus = "REQUEST_SENT" | "OFFER_RECEIVED" | "WAITING_FOR_CLARIFCATION" | "OFFER_CONFIRMED" | "OFFER_DECLINED";

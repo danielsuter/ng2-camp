@@ -1,14 +1,14 @@
 buildscript {
-	ext {
-		springBootVersion = '1.3.3.RELEASE'
-	}
-	repositories {
-		mavenCentral()
-	}
-	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    ext {
+        springBootVersion = '1.3.3.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
         classpath group: 'cz.habarta.typescript-generator', name: 'typescript-generator-gradle-plugin', version: '1.8.202'
-	}
+    }
 }
 
 apply plugin: 'java'
@@ -18,12 +18,12 @@ apply plugin: 'spring-boot'
 apply plugin: 'cz.habarta.typescript-generator'
 
 jar {
-	baseName = 'campplanner'
-	version = '0.0.1-SNAPSHOT'
-	
-	into('static') {
-		from ('../frontend/dist')
-	}
+    baseName = 'campplanner'
+    version = '0.0.1-SNAPSHOT'
+
+    into('static') {
+        from('../frontend/dist')
+    }
 }
 
 jar.dependsOn ":frontend:npmBuildProd"
@@ -32,50 +32,55 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 configurations {
-	// Comes from postgres dependency. SpringBoot uses a different logging framework by default.
-	all*.exclude group: 'ch.qos.logback'
+    // Comes from postgres dependency. SpringBoot uses a different logging framework by default.
+    all*.exclude group: 'ch.qos.logback'
 }
 
 dependencies {
-	compile('org.springframework.boot:spring-boot-starter-data-jpa')
-	compile('org.springframework.boot:spring-boot-starter-jersey')
-	compile('org.springframework.boot:spring-boot-starter-mail')
-	compile('org.springframework.boot:spring-boot-starter-web')
-	compile("org.springframework.boot:spring-boot-starter-security")
-	runtime('org.hsqldb:hsqldb')
-	runtime('org.postgresql:postgresql:9.4-1200-jdbc41')
-	compile('org.flywaydb:flyway-core')
-	testCompile('org.springframework.boot:spring-boot-starter-test')
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile('org.springframework.boot:spring-boot-starter-jersey')
+    compile('org.springframework.boot:spring-boot-starter-mail')
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile("org.springframework.boot:spring-boot-starter-security")
+    runtime('org.hsqldb:hsqldb')
+    runtime('org.postgresql:postgresql:9.4-1200-jdbc41')
+    compile('org.flywaydb:flyway-core')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
 
 eclipse {
-	classpath {
-		 containers.remove('org.eclipse.jdt.launching.JRE_CONTAINER')
-		 containers 'org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8'
-	}
+    classpath {
+        containers.remove('org.eclipse.jdt.launching.JRE_CONTAINER')
+        containers 'org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8'
+    }
 }
 
 task wrapper(type: Wrapper) {
-	gradleVersion = '2.12'
+    gradleVersion = '2.12'
 }
 
 // Required by heroku
 task stage {
-	dependsOn build
-	dependsOn ":frontend:npmBuildProd"
+    dependsOn build
+    dependsOn ":frontend:npmBuildProd"
 }
 
 generateTypeScript {
-	outputFile = '../frontend/src/app/model/backend-typings.ts'
+    outputFile = '../frontend/src/app/model/backend-typings.ts'
     outputFileType = 'implementationFile'
-	classes = [
-			'ch.zuehlke.campplanner.domain.Hotel'
-	]
-	jsonLibrary = 'jackson2'
-	outputKind = 'module'
+    noFileComment = true
+    excludeClasses = [
+            'java.io.Serializable'
+    ]
+    classPatterns = [
+            'ch.zuehlke.campplanner.domain.*'
+    ]
+    jsonLibrary = 'jackson2'
+    sortDeclarations = true
+    outputKind = 'module'
 }
