@@ -11,22 +11,22 @@ import {MaterializeDirective} from 'angular2-materialize';
 })
 export class LoginComponent {
 
-  private username: string = '';
-  private password: string = '';
+  private username: string = 'user';
+  private password: string = 'password';
 
   constructor(private auth: AuthService) {
   }
 
   doLogin() {
     this.auth.login(this.username, this.password);
-    this.username = '';
-    this.password = '';
+    this.username = 'user';
+    this.password = 'password';
   }
 
   doLogout() {
     this.auth.logout();
-    this.username = '';
-    this.password = '';
+    this.username = 'user';
+    this.password = 'password';
   }
 
   invalid(): boolean {
