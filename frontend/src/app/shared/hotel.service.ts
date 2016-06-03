@@ -1,16 +1,19 @@
 import {Injectable} from '@angular/core';
-import {Http, Response} from '@angular/http';
+import {Http, Response, Headers} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import {Subject} from 'rxjs/Subject';
 import 'rxjs/add/operator/map';
 import {Router} from '@ngrx/router';
 import {AuthHttp} from 'angular2-jwt';
-import {Hotel} from '../model/backend-typings'; 
+import {Hotel} from '../model/backend-typings';
+import {UrlProvider} from './urlProvider';
 
 @Injectable()
 export class HotelService {
 
-  constructor(private http: Http, private authHttp: AuthHttp, private router: Router) {
+  constructor(private http: Http,
+              private authHttp: AuthHttp,
+              private router: Router) {
   }
 
   getHotels(): Observable<Hotel[]> {
@@ -21,11 +24,12 @@ export class HotelService {
   }
 
   getHotelsAuthenticated(): Observable<Hotel[]> {
-    const queryUrl: string = `rest/hotels`;
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
 
     let hotelsSubject = new Subject<Response>();
 
-    this.authHttp.get(queryUrl)
+    this.authHttp.get(UrlProvider.getBackendUrl('/rest/hotels'), {headers: headers})
       .subscribe(
         value => hotelsSubject.next(value),
         error => this.handleError(error),

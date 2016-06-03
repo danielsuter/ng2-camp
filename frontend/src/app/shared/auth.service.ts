@@ -1,11 +1,14 @@
 import {Injectable} from '@angular/core';
+import {Http, Headers} from '@angular/http';
 import {tokenNotExpired} from 'angular2-jwt';
 import {Router} from '@ngrx/router';
+import {UrlProvider} from './urlProvider';
 
 @Injectable()
 export class AuthService {
 
-  constructor(private router: Router) {
+  constructor(private router: Router,
+              private http: Http) {
   }
 
   public authenticated() {
@@ -13,10 +16,20 @@ export class AuthService {
   }
 
   public login(username: string, password: string) {
-    console.log(username, password);
-    localStorage.setItem('id_token',
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ');
-    this.router.go('/hotels');
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    return this.http.post(UrlProvider.getBackendUrl('/auth/login'), JSON.stringify(
+      {
+        name: username,
+        password: password
+      }
+    ), {
+      headers: headers
+    }).subscribe((response) => {
+      localStorage.setItem('id_token', response.text());
+      this.router.go('/hotels');
+    });
   }
 
   public logout() {
