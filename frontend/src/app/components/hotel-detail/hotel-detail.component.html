@@ -33,4 +33,26 @@
       </div>
     </div>
   </div>
+
+  <div class="fixed-action-btn" style="bottom: 45px; right: 45px;">
+    <a [linkTo]="'/hotels/new'" class="btn-floating btn-large blue">
+      <i class="large material-icons">mode_edit</i>
+    </a>
+    <ul>
+      <li><a materialize="leanModal" [materializeParams]="[{dismissible: true}]" class="btn-floating red modal-trigger"
+             href="#modal1"><i class="material-icons">delete</i></a></li>
+    </ul>
+  </div>
+
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Delete Hotel?</h4>
+      <p>Do you really want to delete the hotel "{{hotel.name}}"?</p>
+    </div>
+    <div class="modal-footer">
+      <a class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+      <a (click)="deleteHotel()" class=" modal-action modal-close waves-effect waves-green btn-flat">Delete</a>
+    </div>
+  </div>
+
 </div>

@@ -64,6 +64,22 @@ export class HotelService {
       .map((res: Response) => res.json());
   }
 
+  deleteHotel(id: number): Observable<Response> {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    let hotelSubject = new Subject<Response>();
+
+    this.authHttp.delete(UrlProvider.getBackendUrl('/rest/hotels/' + id), {headers: headers})
+      .subscribe(
+        value => hotelSubject.next(value),
+        error => this.handleError(error),
+        () => hotelSubject.complete()
+      );
+
+    return hotelSubject.asObservable();
+  }
+
   private handleError(error: Error) {
     console.log('error', error);
     if (error.message === 'No JWT present') {
