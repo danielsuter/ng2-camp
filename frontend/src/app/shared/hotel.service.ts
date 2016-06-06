@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Http, Response, Headers, RequestOptions} from '@angular/http';
+import {Response, Headers, RequestOptions} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import {Subject} from 'rxjs/Subject';
 import 'rxjs/add/operator/map';
@@ -11,9 +11,7 @@ import {UrlProvider} from './urlProvider';
 @Injectable()
 export class HotelService {
 
-  constructor(private http: Http,
-              private authHttp: AuthHttp,
-              private router: Router) {
+  constructor(private authHttp: AuthHttp, private router: Router) {
   }
 
   saveHotel(hotel : Hotel) : Observable<Hotel> {
