@@ -6,18 +6,37 @@
 </div>
 
 <div class="row">
-  <div class="input-field col m6">
+  <div class="input-field col m10 offset-m2">
       <i class="material-icons prefix">search</i>
       <input id="icon_prefix" type="text" class="validate" #filterInput (keyup)="0">
       <label for="icon_prefix">Search by name, desc or city</label>
   </div>
 </div>
 <div class="row">
-  <div class="col m12">
+  <div class="col m2">
+    <div class="row">
+      <div class="input-field">
+        <select multiple materialize="material_select" [materializeSelectOptions]="countries"
+                (change)="change($event.target.options)">
+          <option value="" disabled selected>Choose countries</option>
+          <option *ngFor="let country of countries" [value]="country.value">{{country.name}}</option>
+        </select>
+        <label>Countries</label>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <p>Price range</p>
+      <p class="range-field">
+        <input type="range" id="priceRange" min="0" max="100"/>
+      </p>
+    </div>
+  </div>
+  <div class="col m10">
     <div class="card-panel">
       <table class="responsive-table striped">
         <tbody>
-        <tr *ngFor="let hotel of hotels | async | hotelFilter:filterInput.value">
+        <tr *ngFor="let hotel of hotels | async | hotelFilter:filterInput.value | countryFilter:selectedValues">
           <td><a [linkTo]="'/hotels/' + hotel.id">{{hotel.name}}</a></td >
           <td>{{hotel.city}}</td>
           <td>{{hotel.countryCode}}</td>
