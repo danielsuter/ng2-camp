@@ -8,12 +8,32 @@
   </div>
 </div>
 <div class="row">
-  <div class="col m3">
+  <div class="col m3 offset-m2">
     <input type="text" placeholder="Hotelfilter" #filterInput (keyup)="0"/>
   </div>
 </div>
+
 <div class="row">
-  <div class="col m12">
+  <div class="col m2">
+    <div class="row">
+      <div class="input-field">
+        <select multiple materialize="material_select" [materializeSelectOptions]="countries"
+                (change)="change($event.target.options)">
+          <option value="" disabled selected>Choose countries</option>
+          <option *ngFor="let country of countries" [value]="country.value">{{country.name}}</option>
+        </select>
+        <label>Countries</label>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <p>Price range</p>
+      <p class="range-field">
+        <input type="range" id="priceRange" min="0" max="100"/>
+      </p>
+    </div>
+  </div>
+  <div class="col m10 s12">
     <div class="card-panel">
       <table class="responsive-table striped">
         <tbody>
@@ -29,3 +49,4 @@
     </div>
   </div>
 </div>
+
