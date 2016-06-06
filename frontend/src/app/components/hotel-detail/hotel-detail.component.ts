@@ -6,10 +6,11 @@ import {HotelService} from '../../shared/hotel.service';
 import {Hotel} from '../../model/backend-typings';
 import {MaterializeDirective} from 'angular2-materialize/dist/index';
 import * as Materialize from 'angular2-materialize/dist/index';
+import {MapComponent} from './map/map.component';
 
 @Component({
   selector: 'hotel-detail',
-  directives: [MaterializeDirective],
+  directives: [MaterializeDirective, MapComponent],
   providers: [HotelService],
   template: require('./hotel-detail.component.html')
 })

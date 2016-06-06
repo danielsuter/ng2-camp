@@ -1,4 +1,5 @@
 <div class="row" *ngIf="hotel">
+
   <div class="col s6 m6 center-align">
     <div class="card">
       <div class="card-image">
@@ -16,6 +17,7 @@
       </div>
     </div>
   </div>
+
   <div class="col s6 m6 center-align">
     <div class="card">
       <div class="card-content left-align">
@@ -29,10 +31,10 @@
         <div class="section">
           <p>Number of rooms: {{hotel.rooms}}</p>
         </div>
-        <img class="responsive-img center-align" src="../../../assets/img/map_dummy.png">
       </div>
     </div>
   </div>
+
 
   <div class="fixed-action-btn" style="bottom: 45px; right: 45px;">
     <a [linkTo]="'/hotels/new'" class="btn-floating btn-large blue">
@@ -55,4 +57,14 @@
     </div>
   </div>
 
+</div>
+<div class="row" *ngIf="hotel">
+  <div class="col s6 m6 center-align">
+    <div class="card">
+      <div class="card-content left-align">
+        <h3>Map</h3>
+        <map></map>
+      </div>
+    </div>
+  </div>
 </div>
