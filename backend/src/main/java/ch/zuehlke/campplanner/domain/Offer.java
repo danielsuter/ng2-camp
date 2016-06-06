@@ -1,5 +1,7 @@
 package ch.zuehlke.campplanner.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Currency;
 import java.util.Date;
@@ -20,10 +22,10 @@ public class Offer {
     private Date expirationDate;
 
 	@Temporal(TemporalType.DATE)
-    private Date from;
+    private Date fromDate;
 
 	@Temporal(TemporalType.DATE)
-    private Date to;
+    private Date toDate;
 
     private Integer singleRooms;
     private Integer doubleRooms;
@@ -37,6 +39,7 @@ public class Offer {
 
     private String requestingPerson;
 
+    @JsonIgnore
     @ManyToOne
     private Hotel hotel;
 
@@ -64,20 +67,20 @@ public class Offer {
         this.expirationDate = expirationDate;
     }
 
-    public Date getFrom() {
-        return from;
+    public Date getFromDate() {
+        return fromDate;
     }
 
-    public void setFrom(Date from) {
-        this.from = from;
+    public void setFromDate(Date fromDate) {
+        this.fromDate = fromDate;
     }
 
-    public Date getTo() {
-        return to;
+    public Date getToDate() {
+        return toDate;
     }
 
-    public void setTo(Date to) {
-        this.to = to;
+    public void setToDate(Date toDate) {
+        this.toDate = toDate;
     }
 
     public Integer getSingleRooms() {

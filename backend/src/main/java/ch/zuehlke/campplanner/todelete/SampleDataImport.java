@@ -2,10 +2,13 @@ package ch.zuehlke.campplanner.todelete;
 
 import ch.zuehlke.campplanner.dao.HotelRepository;
 import ch.zuehlke.campplanner.domain.Hotel;
+import ch.zuehlke.campplanner.domain.Offer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
+
+import java.util.Date;
 
 /**
  * Initial data which should be imported by an sql script later on.
@@ -29,7 +32,18 @@ public class SampleDataImport implements ApplicationListener<ContextRefreshedEve
         hotelRepository.save(create("Parkhotel Adler", "Hinterzarten", "DE", "http://www.parkhoteladler.de/de/"));
         hotelRepository.save(create("Hotel Helvetia", "Lindau", "DE", "http://www.hotel-helvetia.com/"));
         hotelRepository.save(create("Steigenberger Inselhotel", "Konstanz", "DE", "http://de.steigenberger.com/Konstanz/Steigenberger-Inselhotel"));
-        hotelRepository.save(create("Schloss Wartegg", "Rohrschacherberg", "CH", "http://wartegg.ch/"));
+        Hotel hotel = create("Schloss Wartegg", "Rohrschacherberg", "CH", "http://wartegg.ch/");
+        createOffer(hotel);
+        hotelRepository.save(hotel);
+    }
+
+    private void createOffer(Hotel savedHotel) {
+        Offer offer = new Offer();
+        offer.setFromDate(new Date());
+        offer.setToDate(new Date());
+        offer.setDoubleRooms(34);
+        offer.setSingleRooms(10);
+        savedHotel.addOffer(offer);
     }
 
     private Hotel create(String name, String city, String country, String website) {

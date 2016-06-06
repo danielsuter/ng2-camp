@@ -13,21 +13,34 @@ public class Camp {
     private String name;
     private String team;
 
-	@Temporal(TemporalType.DATE)
-    private Date from;
+    @Temporal(TemporalType.DATE)
+    private Date fromDate;
 
 	@Temporal(TemporalType.DATE)
-    private Date to;
+    private Date toDate;
     private Integer numberOfPeople;
-
-	@OneToMany
-    private List<Offer> offers;
 
 	@OneToMany
 	private List<OfferRequest> offerRequests;
 
     // derzeitge stand (doodle erstellt, datum fixiert, offerte angenommen, hotels abgesagt, ...)
     private String status;
+
+    public Date getToDate() {
+        return toDate;
+    }
+
+    public void setToDate(Date toDate) {
+        this.toDate = toDate;
+    }
+
+    public Date getFromDate() {
+        return fromDate;
+    }
+
+    public void setFromDate(Date fromDate) {
+        this.fromDate = fromDate;
+    }
 
     public Long getId() {
         return id;
@@ -53,36 +66,12 @@ public class Camp {
         this.team = team;
     }
 
-    public Date getFrom() {
-        return from;
-    }
-
-    public void setFrom(Date from) {
-        this.from = from;
-    }
-
-    public Date getTo() {
-        return to;
-    }
-
-    public void setTo(Date to) {
-        this.to = to;
-    }
-
     public Integer getNumberOfPeople() {
         return numberOfPeople;
     }
 
     public void setNumberOfPeople(Integer numberOfPeople) {
         this.numberOfPeople = numberOfPeople;
-    }
-
-    public List<Offer> getOffers() {
-        return offers;
-    }
-
-    public void setOffers(List<Offer> offers) {
-        this.offers = offers;
     }
 
     public List<OfferRequest> getOfferRequests() {

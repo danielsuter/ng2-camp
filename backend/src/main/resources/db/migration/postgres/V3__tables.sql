@@ -2,12 +2,12 @@ DROP TABLE IF EXISTS hotel CASCADE;
 
 CREATE TABLE camp (
   id               INT8 NOT NULL,
-  "from"           DATE,
+  "from_date"           DATE,
   name             VARCHAR(255),
   number_of_people INT4,
   status           VARCHAR(255),
   team             VARCHAR(255),
-  "to"             DATE,
+  "to_date"             DATE,
   PRIMARY KEY (id)
 );
 
@@ -57,12 +57,12 @@ CREATE TABLE offer (
   description       VARCHAR(255),
   double_rooms      INT4,
   expiration_date   DATE,
-  "from"            DATE,
+  "from_date"            DATE,
   number_of_people  INT4,
   offer_date        DATE,
   requesting_person VARCHAR(255),
   single_rooms      INT4,
-  "to"              DATE,
+  "to_date"              DATE,
   hotel_id          INT8,
   PRIMARY KEY (id)
 );

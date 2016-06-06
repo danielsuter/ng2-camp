@@ -1,9 +1,9 @@
 package ch.zuehlke.campplanner.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 
 @Entity
 public class Hotel {
@@ -25,16 +25,19 @@ public class Hotel {
     private String holidayCheckUrl;
     private Integer rooms;
 
-//    @OneToMany
-//    private List<Offer> offers;
-//
-//    public List<Offer> getOffers() {
-//        return offers;
-//    }
-//
-//    public void setOffers(List<Offer> offers) {
-//        this.offers = offers;
-//    }
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Offer> offers;
+
+    public List<Offer> getOffers() {
+        if(offers == null) {
+            offers = new LinkedList<>();
+        }
+        return offers;
+    }
+
+    public void setOffers(List<Offer> offers) {
+        this.offers = offers;
+    }
 
     public String getStreet() {
         return street;
@@ -121,12 +124,8 @@ public class Hotel {
         this.website = website;
     }
 
-    public int getRooms() {
+    public Integer getRooms() {
         return rooms;
-    }
-
-    public void setRooms(int rooms) {
-        this.rooms = rooms;
     }
 
     public String getTripAdvisorUrl() {
@@ -143,5 +142,10 @@ public class Hotel {
 
     public void setHolidayCheckUrl(String holidayCheckUrl) {
         this.holidayCheckUrl = holidayCheckUrl;
+    }
+
+    public void addOffer(Offer offer) {
+        getOffers().add(offer);
+        offer.setHotel(this);
     }
 }
