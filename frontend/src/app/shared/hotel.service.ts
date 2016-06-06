@@ -40,6 +40,23 @@ export class HotelService {
       .map((res: Response) => res.json());
   }
 
+  getHotelAuthenticated(id: number): Observable<Hotel> {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    let hotelSubject = new Subject<Response>();
+
+    this.authHttp.get(UrlProvider.getBackendUrl('/rest/hotels/' + id), {headers: headers})
+      .subscribe(
+        value => hotelSubject.next(value),
+        error => this.handleError(error),
+        () => hotelSubject.complete()
+      );
+
+    return hotelSubject.asObservable()
+      .map((res: Response) => res.json());
+  }
+
   private handleError(error: Error) {
     console.log('error', error);
     if (error.message === 'No JWT present') {
