@@ -34,34 +34,32 @@ export class HotelService {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
-    let hotelsSubject = new Subject<Response>();
+    let hotelsSubject = new Subject<Hotel[]>();
 
     this.authHttp.get(UrlProvider.getBackendUrl('/rest/hotels'), {headers: headers})
       .subscribe(
-        value => hotelsSubject.next(value),
+        value => hotelsSubject.next(value.json()),
         error => this.handleError(error),
         () => hotelsSubject.complete()
       );
 
-    return hotelsSubject.asObservable()
-      .map((res: Response) => res.json());
+    return hotelsSubject.asObservable();
   }
 
   getHotelAuthenticated(id: number): Observable<Hotel> {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
-    let hotelSubject = new Subject<Response>();
+    let hotelSubject = new Subject<Hotel>();
 
     this.authHttp.get(UrlProvider.getBackendUrl('/rest/hotels/' + id), {headers: headers})
       .subscribe(
-        value => hotelSubject.next(value),
+        value => hotelSubject.next(value.json()),
         error => this.handleError(error),
         () => hotelSubject.complete()
       );
 
-    return hotelSubject.asObservable()
-      .map((res: Response) => res.json());
+    return hotelSubject.asObservable();
   }
 
   deleteHotel(id: number): Observable<Response> {
