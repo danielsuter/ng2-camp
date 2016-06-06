@@ -11,9 +11,7 @@ import {UrlProvider} from './urlProvider';
 @Injectable()
 export class HotelService {
 
-  constructor(private http: Http,
-              private authHttp: AuthHttp,
-              private router: Router) {
+  constructor(private authHttp: AuthHttp, private router: Router) {
   }
 
   saveHotel(hotel : Hotel) : Observable<Hotel> {
