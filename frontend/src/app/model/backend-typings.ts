@@ -27,7 +27,7 @@ export interface Hotel {
     id: number;
     name: string;
     offers: Offer[];
-    picturUrl: string;
+    pictureUrl: string;
     rooms: number;
     street: string;
     streetNumber: string;

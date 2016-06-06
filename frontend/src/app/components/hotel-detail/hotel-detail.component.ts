@@ -39,4 +39,8 @@ export class HotelDetailComponent {
       });
     }
   }
+
+  getHotelImage() {
+    return this.hotel.pictureUrl ? this.hotel.pictureUrl : '/assets/img/default_image.png';
+  }
 }

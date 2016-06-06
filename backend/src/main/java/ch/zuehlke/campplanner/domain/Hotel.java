@@ -1,7 +1,7 @@
 package ch.zuehlke.campplanner.domain;
 
 import javax.persistence.*;
-import java.util.Collections;
+import javax.validation.constraints.NotNull;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -11,17 +11,20 @@ public class Hotel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotNull
     private String name;
     private String description;
     private String zipCode;
     private String street;
     private String streetNumber;
+    @NotNull
     private String city;
+    @NotNull
     private String countryCode;
     private String website;
     private String contactEmail;
 
-    private String picturUrl;
+    private String pictureUrl;
 
     private String tripAdvisorUrl;
     private String holidayCheckUrl;
@@ -31,18 +34,18 @@ public class Hotel {
     private List<Offer> offers;
 
     public List<Offer> getOffers() {
-        if(offers == null) {
+        if (offers == null) {
             offers = new LinkedList<>();
         }
         return offers;
     }
 
-    public String getPicturUrl() {
-        return picturUrl;
+    public String getPictureUrl() {
+        return pictureUrl;
     }
 
-    public void setPicturUrl(String picturUrl) {
-        this.picturUrl = picturUrl;
+    public void setPictureUrl(String pictureUrl) {
+        this.pictureUrl = pictureUrl;
     }
 
     public void setOffers(List<Offer> offers) {
