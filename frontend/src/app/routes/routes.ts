@@ -1,5 +1,5 @@
 import {Routes, Route} from '@ngrx/router';
-import {HomeComponent} from '../components/home/hotel-detail.component';
+import {HomeComponent} from '../components/home/home.component.ts';
 import {HotelsComponent} from '../components/hotel-overview/hotels.component';
 import {HotelDetailComponent} from '../components/hotel-detail/hotel-detail.component';
 import {LoginComponent} from '../components/login/login.component';
