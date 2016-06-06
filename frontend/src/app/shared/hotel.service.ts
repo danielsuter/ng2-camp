@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Http, Response, Headers} from '@angular/http';
+import {Http, Response, Headers, RequestOptions} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import {Subject} from 'rxjs/Subject';
 import 'rxjs/add/operator/map';
@@ -16,11 +16,18 @@ export class HotelService {
               private router: Router) {
   }
 
-  getHotels(): Observable<Hotel[]> {
-    // const queryUrl: string = `http://localhost:8080/rest/hotels`;
-    const queryUrl = `http://beta.json-generator.com/api/json/get/NkpdDDTeb`;
-    return this.http.get(queryUrl)
-      .map((res: Response) => res.json());
+  saveHotel(hotel : Hotel) : Observable<Hotel> {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    let hotelJson = JSON.stringify(hotel);
+    console.log(hotelJson);
+    return this.authHttp.post(UrlProvider.getBackendUrl('/rest/hotels'), hotelJson, options).
+      map(this.extractData).catch(this.handleError);
+  }
+
+  private extractData(res: Response) {
+    let body = res.json();
+    return body || { };
   }
 
   getHotelsAuthenticated(): Observable<Hotel[]> {

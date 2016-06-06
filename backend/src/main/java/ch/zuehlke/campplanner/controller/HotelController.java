@@ -31,8 +31,9 @@ public class HotelController {
 
     @Transactional
     @RequestMapping(method = RequestMethod.POST)
-    public void addOrUpdate(@RequestBody Hotel hotel) {
+    public Hotel addOrUpdate(@RequestBody Hotel hotel) {
         hotelRepository.save(hotel);
+        return hotel;
     }
 
     @Transactional

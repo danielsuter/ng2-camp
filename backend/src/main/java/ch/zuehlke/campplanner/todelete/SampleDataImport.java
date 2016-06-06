@@ -5,6 +5,7 @@ import ch.zuehlke.campplanner.domain.Hotel;
 import ch.zuehlke.campplanner.domain.Offer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
