@@ -71,6 +71,7 @@ public class SampleDataImport implements ApplicationListener<ContextRefreshedEve
         hotel.setTripAdvisorUrl("https://www.tripadvisor.de/Hotel_Review-g198500-d291940-Reviews-Vier_Jahreszeiten_am_Schluchsee-Schluchsee_Baden_Wurttemberg.html");
         hotel.setHolidayCheckUrl("https://www.holidaycheck.de/hi/hotel-vier-jahreszeiten-am-schluchsee/63a55868-abe6-343c-93c4-c177cbb01e94?q=Hotel+Vier+Jahreszeiten+am+Schluchsee+%2F+Schluchsee+%28Hotel%29");
         hotel.setRooms(111);
+        hotel.setPictureUrl("http://vjz.werbstatt.info/uploads/pics/aussicht_wald_see.jpg");
         return hotel;
     }
 }
