@@ -9,13 +9,16 @@
     </a>
   </div>
 </div>
+<div class="col m6">
+  <input type="text" placeholder="Hotelfilter" #filterInput (keyup)="0"/>
+</div>
 <div class="row">
 
   <div class="col m12">
     <div class="card-panel">
       <table class="responsive-table striped">
         <tbody>
-        <tr *ngFor="let hotel of hotels | async">
+        <tr *ngFor="let hotel of hotels | async | hotelFilter:filterInput.value">
           <td><a [linkTo]="'/hotels/' + hotel.id">{{hotel.name}}</a></td>
           <td>{{hotel.city}}</td>
           <td>{{hotel.countryCode}}</td>
