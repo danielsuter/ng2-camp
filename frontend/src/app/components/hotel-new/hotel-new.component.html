@@ -1,5 +1,5 @@
 <div class="row">
-  <form class="col s12">
+  <form materialize class="col s12">
     <div class="row">
       <div class="input-field col s12">
         <input id="hotelName" type="text" class="validate" required [(ngModel)]="hotel.name">
@@ -55,13 +55,12 @@
       </div>
 
       <div class="row">
-        <div class="input-field col s2">
-          <input id="countryCode" type="text" class="validate" [(ngModel)]="hotel.countryCode">
-          <label for="countryCode">Country code</label>
-        </div>
-
-        <div class="input-field col s10">
-          <input id="country" type="text" readonly="readonly" value="Switzerland">
+        <div class="input-field col s4">
+          <select materialize="material_select" [materializeSelectOptions]="countries | async" [(ngModel)]="hotel.countryCode">
+            <option value="" disabled selected>Select country</option>
+            <option *ngFor="let country of countries | async" [value]="country.code">{{country.name}}</option>
+          </select>
+          <label>Country</label>
         </div>
       </div>
     </div>

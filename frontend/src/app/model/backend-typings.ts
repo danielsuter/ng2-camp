@@ -1,3 +1,4 @@
+
 export interface Camp {
     fromDate: Date;
     id: number;
@@ -7,6 +8,11 @@ export interface Camp {
     status: string;
     team: string;
     toDate: Date;
+}
+
+export interface Country {
+    code: string;
+    name: string;
 }
 
 export interface Currency {
