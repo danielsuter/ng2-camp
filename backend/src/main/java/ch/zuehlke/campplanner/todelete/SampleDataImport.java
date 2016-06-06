@@ -24,6 +24,7 @@ public class SampleDataImport implements ApplicationListener<ContextRefreshedEve
      */
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
+        hotelRepository.save(createCompleteHotel());
         hotelRepository.save(create("Schloss Münchenweiler", "Münchenweiler", "CH", "http://www.schloss-muenchenwiler.ch/home.html"));
         hotelRepository.save(create("Hotel Moosegg", "Moosegg", "CH", "http://www.moosegg.ch/v2/"));
         hotelRepository.save(create("Hotel Seeblick", "Emmetten", "CH", "http://www.seminarhotelseeblick.ch/de/"));
@@ -53,6 +54,22 @@ public class SampleDataImport implements ApplicationListener<ContextRefreshedEve
         hotel.setCountryCode(country);
         hotel.setWebsite(website);
         hotel.setRooms(100);
+        return hotel;
+    }
+
+    private Hotel createCompleteHotel() {
+        Hotel hotel = new Hotel();
+        hotel.setName("Vier Jahreszeiten am Schluchsee");
+        hotel.setDescription("Das Vier Jahreszeiten am Schluchsee liegt im bezaubernden Kurort Schluchsee auf knapp 1.000 m Höhe, im Herzen des einzigartigen Naturparks Südschwarzwald...");
+        hotel.setStreet("Am Riesenbühl");
+        hotel.setZipCode("79859");
+        hotel.setCity("Schluchsee");
+        hotel.setCountryCode("D");
+        hotel.setWebsite("http://www.vjz.de/");
+        hotel.setContactEmail("info@vjz.de");
+        hotel.setTripAdvisorUrl("https://www.tripadvisor.de/Hotel_Review-g198500-d291940-Reviews-Vier_Jahreszeiten_am_Schluchsee-Schluchsee_Baden_Wurttemberg.html");
+        hotel.setHolidayCheckUrl("https://www.holidaycheck.de/hi/hotel-vier-jahreszeiten-am-schluchsee/63a55868-abe6-343c-93c4-c177cbb01e94?q=Hotel+Vier+Jahreszeiten+am+Schluchsee+%2F+Schluchsee+%28Hotel%29");
+        hotel.setRooms(111);
         return hotel;
     }
 }

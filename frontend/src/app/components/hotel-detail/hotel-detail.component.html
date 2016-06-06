@@ -1,15 +1,35 @@
 <div class="row" *ngIf="hotel">
   <div class="col s6 m6 center-align">
-    <div class="card small">
+    <div class="card">
       <div class="card-image">
-        <img src="http://materializecss.com/images/sample-1.jpg">
+        <img src="http://vjz.werbstatt.info/uploads/pics/aussicht_wald_see.jpg">
         <span class="card-title">{{hotel.name}}</span>
       </div>
-      <div class="card-content">
+      <div class="card-content left-align">
         <p>This is a description: {{hotel.description}}</p>
       </div>
       <div class="card-action">
-        <a href="#">This is a link</a>
+        <a *ngIf="hotel.website" href="{{hotel.website}}" target="_blank">Website</a>
+        <a *ngIf="hotel.contactEmail" href="mailto://{{hotel.contactEmail}}">Email</a>
+        <a *ngIf="hotel.tripAdvisorUrl" href="{{hotel.tripAdvisorUrl}}" target="_blank">Trip Advisor</a>
+        <a *ngIf="hotel.holidayCheckUrl" href="{{hotel.holidayCheckUrl}}" target="_blank">Holiday Check</a>
+      </div>
+    </div>
+  </div>
+  <div class="col s6 m6 center-align">
+    <div class="card">
+      <div class="card-content left-align">
+        <h3>Infos</h3>
+        <div class="section">
+          <h5>Address</h5>
+          <p>{{hotel.name}}</p>
+          <p>{{hotel.street}} {{hotel.streetNumber}}</p>
+          <p>{{hotel.countryCode}}-{{hotel.zipCode}} {{hotel.city}}</p>
+        </div>
+        <div class="section">
+          <p>Number of rooms: {{hotel.rooms}}</p>
+        </div>
+        <img class="responsive-img center-align" src="../../../assets/img/map_dummy.png">
       </div>
     </div>
   </div>
