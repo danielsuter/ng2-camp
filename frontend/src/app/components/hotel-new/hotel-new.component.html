@@ -49,14 +49,14 @@
         </div>
 
         <div class="input-field col s8">
-          <input id="city" type="text" class="validate" [(ngModel)]="hotel.city">
+          <input id="city" type="text" class="validate" required [(ngModel)]="hotel.city">
           <label for="city">City</label>
         </div>
       </div>
 
       <div class="row">
         <div class="input-field col s2">
-          <input id="countryCode" type="text" class="validate" [(ngModel)]="hotel.countryCode">
+          <input id="countryCode" type="text" class="validate" required [(ngModel)]="hotel.countryCode">
           <label for="countryCode">Country code</label>
         </div>
 
