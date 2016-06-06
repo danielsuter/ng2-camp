@@ -8,8 +8,10 @@
   </div>
 </div>
 <div class="row">
-  <div class="col m3">
-    <input type="text" placeholder="Hotelfilter" #filterInput (keyup)="0"/>
+  <div class="input-field col m3">
+      <i class="material-icons prefix">search</i>
+      <input id="icon_prefix" type="text" class="validate" #filterInput (keyup)="0">
+      <label for="icon_prefix">Search by name, desc or city</label>
   </div>
 </div>
 <div class="row">
@@ -18,7 +20,7 @@
       <table class="responsive-table striped">
         <tbody>
         <tr *ngFor="let hotel of hotels | async | hotelFilter:filterInput.value">
-          <td><a [linkTo]="'/hotels/' + hotel.id">{{hotel.name}}</a></td>
+          <td><a [linkTo]="'/hotels/' + hotel.id">{{hotel.name}}</a></td >
           <td>{{hotel.city}}</td>
           <td>{{hotel.countryCode}}</td>
           <td><a href="{{hotel.website}}" target="_blank">{{hotel.website}}</a></td>
