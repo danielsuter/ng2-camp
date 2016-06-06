@@ -3,8 +3,8 @@ import {Observable} from 'rxjs/Observable';
 import {HotelService} from './../../shared/hotel.service.ts';
 import {Hotel} from '../../model/backend-typings';
 import FilterPipe from '../hotel.filter.pipe.ts';
-import {MaterializeDirective} from "angular2-materialize/dist/index";
-import CountryFilterPipe from "../country.filter.pipe";
+import {MaterializeDirective} from 'angular2-materialize/dist/index';
+import CountryFilterPipe from '../country.filter.pipe';
 
 @Component({
   selector: 'hotels',
@@ -16,7 +16,7 @@ import CountryFilterPipe from "../country.filter.pipe";
 export class HotelsComponent implements OnInit {
   hotels: Observable<Hotel[]>;
   countries = [];
-  private selectedValues =[];
+  private selectedValues = [];
 
   constructor(private hotelService: HotelService) {
   }
@@ -24,9 +24,9 @@ export class HotelsComponent implements OnInit {
   ngOnInit() {
     this.hotels = this.hotelService.getHotelsAuthenticated();
     this.countries = [
-      {value:"CH",name:"Switzerland"},
-      {value:"DE",name:"Germany"},
-      {value:"AT",name:"Austria"}
+      {value: 'CH', name: 'Switzerland'},
+      {value: 'DE', name: 'Germany'},
+      {value: 'AT', name: 'Austria'}
     ];
 
   }
