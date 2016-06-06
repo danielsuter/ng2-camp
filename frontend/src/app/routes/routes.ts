@@ -9,12 +9,16 @@ import {HotelNewComponent} from "../components/hotel-new/hotel-new.component";
 export const routes:Routes = [
   {
     path: '/',
-    component: HomeComponent
+    component: HotelsComponent
   },
   {
     path: '/hotels',
     guards: [AuthGuard],
     component: HotelsComponent
+  },
+  {
+    path: '/hotels/new',
+    component: HotelNewComponent
   },
   {
     path: '/hotels/:id',
@@ -24,9 +28,5 @@ export const routes:Routes = [
   {
     path: '/login',
     component: LoginComponent
-  },
-  {
-    path: '/hotels/new',
-    component: HotelNewComponent
   }
 ];

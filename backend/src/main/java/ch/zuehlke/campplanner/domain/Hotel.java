@@ -21,6 +21,8 @@ public class Hotel {
     private String website;
     private String contactEmail;
 
+    private String picturUrl;
+
     private String tripAdvisorUrl;
     private String holidayCheckUrl;
     private Integer rooms;
@@ -33,6 +35,14 @@ public class Hotel {
             offers = new LinkedList<>();
         }
         return offers;
+    }
+
+    public String getPicturUrl() {
+        return picturUrl;
+    }
+
+    public void setPicturUrl(String picturUrl) {
+        this.picturUrl = picturUrl;
     }
 
     public void setOffers(List<Offer> offers) {

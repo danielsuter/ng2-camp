@@ -1,8 +1,7 @@
 <nav>
-  <div class="nav-wrapper">
+  <div class="nav-wrapper blue">
     <a href="#" class="brand-logo right">ng-camp</a>
     <ul id="nav-mobile" class="left">
-      <li linkActive="active"><a [linkTo]="'/'">Home</a></li>
       <li *ngIf="auth.authenticated()" linkActive="active"><a [linkTo]="'/hotels'">Hotels</a></li>
       <li *ngIf="!auth.authenticated()" linkActive="active"><a [linkTo]="'/login'">Login</a></li>
       <li *ngIf="auth.authenticated()"><a (click)="logout()">Logout</a></li>

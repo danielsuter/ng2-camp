@@ -1,14 +1,12 @@
-
 export interface Camp {
-    from: Date;
+    fromDate: Date;
     id: number;
     name: string;
     numberOfPeople: number;
     offerRequests: OfferRequest[];
-    offers: Offer[];
     status: string;
     team: string;
-    to: Date;
+    toDate: Date;
 }
 
 export interface Currency {
@@ -23,6 +21,7 @@ export interface Hotel {
     id: number;
     name: string;
     offers: Offer[];
+    picturUrl: string;
     rooms: number;
     street: string;
     streetNumber: string;
@@ -43,14 +42,13 @@ export interface Offer {
     description: string;
     doubleRooms: number;
     expirationDate: Date;
-    from: Date;
-    hotel: Hotel;
+    fromDate: Date;
     id: number;
     numberOfPeople: number;
     offerDate: Date;
     requestingPerson: string;
     singleRooms: number;
-    to: Date;
+    toDate: Date;
 }
 
 export interface OfferRequest {

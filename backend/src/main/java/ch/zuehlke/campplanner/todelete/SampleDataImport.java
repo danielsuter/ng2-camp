@@ -5,6 +5,7 @@ import ch.zuehlke.campplanner.domain.Hotel;
 import ch.zuehlke.campplanner.domain.Offer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
@@ -64,7 +65,7 @@ public class SampleDataImport implements ApplicationListener<ContextRefreshedEve
         hotel.setStreet("Am Riesenbühl");
         hotel.setZipCode("79859");
         hotel.setCity("Schluchsee");
-        hotel.setCountryCode("D");
+        hotel.setCountryCode("DE");
         hotel.setWebsite("http://www.vjz.de/");
         hotel.setContactEmail("info@vjz.de");
         hotel.setTripAdvisorUrl("https://www.tripadvisor.de/Hotel_Review-g198500-d291940-Reviews-Vier_Jahreszeiten_am_Schluchsee-Schluchsee_Baden_Wurttemberg.html");

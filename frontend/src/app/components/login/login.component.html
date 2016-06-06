@@ -1,46 +1,36 @@
-<h1>Login</h1>
-<div materialize class="col m6">
-  <div class="row">
-    <form class="col s12" *ngIf="!auth.authenticated()">
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="username" type="text" class="validate" [(ngModel)]="username">
-          <label for="username">Username</label>
-        </div>
+<div materialize class="row">
+  <form class="col s6 offset-s3" *ngIf="!auth.authenticated()">
+    <h1>Login</h1>
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="username" type="text" class="validate" [(ngModel)]="username">
+        <label for="username">Username</label>
       </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="pass" type="password" class="validate" [(ngModel)]="password">
-          <label for="pass">Password</label>
-        </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="pass" type="password" class="validate" [(ngModel)]="password">
+        <label for="pass">Password</label>
       </div>
-      <div class="row">
-        <div class="col s12">
-          <p>
-            <input type="checkbox" id="remember">
-            <label for="remember">Remember me</label>
-          </p>
-        </div>
+    </div>
+    <div class="row">
+      <div class="col m12">
+        <p class="right-align">
+          <button class="btn btn-large blue waves-effect waves-light" type="button" name="action" (click)="doLogin()"
+                  [disabled]="invalid()"
+                  [ngClass]="{disabled: invalid()}">
+            Login
+          </button>
+        </p>
       </div>
-      <div class="divider"></div>
-      <div class="row">
-        <div class="col m12">
-          <p class="right-align">
-            <button class="btn btn-large waves-effect waves-light" type="button" name="action" (click)="doLogin()"
-                    [disabled]="invalid()"
-                    [ngClass]="{disabled: invalid()}">
-              Login
-            </button>
-          </p>
-        </div>
-      </div>
-    </form>
-  </div>
+    </div>
+  </form>
 
   <div class="row" *ngIf="auth.authenticated()">
     <div class="col m12">
-      <p class="right-align">
-        <button class="btn btn-large waves-effect waves-light" type="button" name="action" (click)="doLogout()">Logout
+      <p class="center-align">
+        <button class="btn btn-large blue waves-effect waves-light" type="button" name="action" (click)="doLogout()">
+          Logout
         </button>
       </p>
     </div>
