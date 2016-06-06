@@ -36,7 +36,7 @@
     <div class="card-panel">
       <table class="responsive-table striped">
         <tbody>
-        <tr *ngFor="let hotel of hotels | async | hotelFilter:filterInput.value">
+        <tr *ngFor="let hotel of hotels | async | hotelFilter:filterInput.value | countryFilter:selectedValues">
           <td><a [linkTo]="'/hotels/' + hotel.id">{{hotel.name}}</a></td >
           <td>{{hotel.city}}</td>
           <td>{{hotel.countryCode}}</td>

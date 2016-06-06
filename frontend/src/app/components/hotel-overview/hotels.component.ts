@@ -4,12 +4,13 @@ import {HotelService} from './../../shared/hotel.service.ts';
 import {Hotel} from '../../model/backend-typings';
 import FilterPipe from '../hotel.filter.pipe.ts';
 import {MaterializeDirective} from "angular2-materialize/dist/index";
+import CountryFilterPipe from "../country.filter.pipe";
 
 @Component({
   selector: 'hotels',
   directives: [MaterializeDirective],
   providers: [HotelService],
-  pipes: [FilterPipe],
+  pipes: [FilterPipe, CountryFilterPipe],
   template: require('./hotels.component.html')
 })
 export class HotelsComponent implements OnInit {
