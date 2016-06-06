@@ -33,18 +33,29 @@
     </div>
   </div>
   <div class="col m10">
-    <div class="card-panel">
-      <table class="responsive-table striped">
+      <table class="responsive-table striped bordered">
+        <thead>
+          <tr>
+            <th>Info</th>
+            <th>Name</th>
+            <th>City</th>
+            <th>Country</th>
+          </tr>
+        </thead>
         <tbody>
         <tr *ngFor="let hotel of hotels | async | hotelFilter:filterInput.value | countryFilter:selectedValues">
+          <td>
+            <a href="{{hotel.website}}" target="_blank">
+              <i class="small material-icons">language</i>
+            </a>
+            <a href="{{hotel.tripAdvisorUrl}}" target="_blank">
+              <i class="small material-icons">star</i>
+            </a>
+          </td>
           <td><a [linkTo]="'/hotels/' + hotel.id">{{hotel.name}}</a></td >
           <td>{{hotel.city}}</td>
           <td>{{hotel.countryCode}}</td>
-          <td><a href="{{hotel.website}}" target="_blank">{{hotel.website}}</a></td>
-          <td><a href="{{hotel.tripAdvisorUrl}}" target="_blank">Trip advisor</a></td>
-          <td>{{hotel.rooms}}</td>
         </tr>
       </table>
-    </div>
   </div>
 </div>
