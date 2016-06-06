@@ -48,7 +48,7 @@
             <a href="{{hotel.website}}" target="_blank">
               <i class="small material-icons">language</i>
             </a>
-            <a href="{{hotel.tripAdvisorUrl}}" target="_blank">
+            <a *ngIf="hotel.tripAdvisorUrl" href="{{hotel.tripAdvisorUrl}}" target="_blank">
               <i class="small material-icons">star</i>
             </a>
           </td>
