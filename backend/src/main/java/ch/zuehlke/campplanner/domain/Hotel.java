@@ -1,7 +1,6 @@
 package ch.zuehlke.campplanner.domain;
 
 import javax.persistence.*;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -21,7 +20,7 @@ public class Hotel {
     private String website;
     private String contactEmail;
 
-    private String picturUrl;
+    private String pictureUrl;
 
     private String tripAdvisorUrl;
     private String holidayCheckUrl;
@@ -37,12 +36,12 @@ public class Hotel {
         return offers;
     }
 
-    public String getPicturUrl() {
-        return picturUrl;
+    public String getPictureUrl() {
+        return pictureUrl;
     }
 
-    public void setPicturUrl(String picturUrl) {
-        this.picturUrl = picturUrl;
+    public void setPictureUrl(String pictureUrl) {
+        this.pictureUrl = pictureUrl;
     }
 
     public void setOffers(List<Offer> offers) {

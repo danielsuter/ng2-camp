@@ -32,13 +32,15 @@ export class HotelDetailComponent {
   deleteHotel() {
     if (this.hotel && this.hotel.id) {
       this.hotelService.deleteHotel(this.hotel.id).subscribe(response => {
-        if (response.status === 200) {
-          Materialize.toast('Deleted hotel', 4000, 'rounded');
-          this.router.go('/hotels');
-        } else {
-          Materialize.toast('Error: Could not delete hotel', 4000, 'rounded');
-        }
+        Materialize.toast('Deleted hotel', 4000, 'rounded');
+        this.router.go('/hotels');
+      }, error => {
+        Materialize.toast('Error: Could not delete hotel', 4000, 'rounded');
       });
     }
+  }
+
+  getHotelImage() {
+    return this.hotel.pictureUrl ? this.hotel.pictureUrl : '/assets/img/default_image.png';
   }
 }

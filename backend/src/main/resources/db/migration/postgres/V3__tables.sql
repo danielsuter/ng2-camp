@@ -61,7 +61,7 @@
         description varchar(255),
         holiday_check_url varchar(255),
         name varchar(255),
-        pictur_url varchar(255),
+        picture_url varchar(255),
         rooms int4,
         street varchar(255),
         street_number varchar(255),

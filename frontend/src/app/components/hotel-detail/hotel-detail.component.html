@@ -3,11 +3,11 @@
   <div class="col s6 m6 center-align">
     <div class="card">
       <div class="card-image">
-        <img src="http://vjz.werbstatt.info/uploads/pics/aussicht_wald_see.jpg">
+        <img [src] = "getHotelImage()">
         <span class="card-title">{{hotel.name}}</span>
       </div>
       <div class="card-content left-align">
-        <p>This is a description: {{hotel.description}}</p>
+        <p>{{hotel.description}}</p>
       </div>
       <div class="card-action">
         <a *ngIf="hotel.website" href="{{hotel.website}}" target="_blank">Website</a>
