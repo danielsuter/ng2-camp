@@ -14,41 +14,39 @@ export class CrudService {
   }
 
   public get<T>(url: string): Observable<T> {
-    return this.wrapCallAndExtract(this.authHttp.get(UrlProvider.getBackendUrl(url),
+    return this.wrapCallAndMap(this.authHttp.get(UrlProvider.getBackendUrl(url),
       this.createRequestOptions()));
   }
 
   public post<T>(url: string, data: T): Observable<T> {
     let json = JSON.stringify(data);
-    return this.wrapCallAndExtract(this.authHttp.post(UrlProvider.getBackendUrl(url),
-      json,
+    return this.wrapCallAndMap(this.authHttp.post(UrlProvider.getBackendUrl(url), json,
       this.createRequestOptions()));
   }
 
   public put<T>(url: string, data: T): Observable<T> {
     let json = JSON.stringify(data);
-    return this.wrapCallAndExtract(this.authHttp.put(UrlProvider.getBackendUrl(url),
-      json,
+    return this.wrapCallAndMap(this.authHttp.put(UrlProvider.getBackendUrl(url), json,
       this.createRequestOptions()));
   }
 
-  public delete(url: string): Observable<Response> {
+  public doDelete(url: string): Observable<Response> {
     return this.wrapCall(this.authHttp.delete(UrlProvider.getBackendUrl(url),
       this.createRequestOptions()));
   }
 
-  private wrapCallAndExtract<T>(observable: Observable<Response>): Observable<T> {
-    return this.wrapCall(observable, this.extractJson);
+  private wrapCallAndMap<T>(observable: Observable<Response>): Observable<T> {
+    return this.wrapCall(observable, this.responseToJsonObject);
   }
 
-  private wrapCall<T>(observable: Observable<Response>,
-                      extractor: (n: Response) => any = n => n): Observable<T> {
+  private wrapCall<T>(observable: Observable<Response>, mapper: (n: Response) => any = n => n): Observable<T> {
     let subject = new Subject<T>();
     observable.subscribe(
-      value => subject.next(extractor(value)),
+      value => subject.next(mapper(value)),
       error => {
-        this.handleError(error);
-        subject.error(error);
+        if (!this.interceptError(error)) {
+          subject.error(error);
+        }
       },
       () => subject.complete()
     );
@@ -61,16 +59,18 @@ export class CrudService {
     return new RequestOptions({headers: headers});
   }
 
-  private extractJson(res: Response): any {
+  private responseToJsonObject(res: Response): any {
     let body = res.json();
     return body || {};
   }
 
-  private handleError(error: Error) {
+  private interceptError(error: Error) {
     console.log('error', error);
     if (error.message === 'No JWT present') {
-      console.log('no JWT');
+      console.log('no JWT, redirecting to login page');
       this.router.go('/login');
+      return true;
     }
+    return false;
   }
 }
