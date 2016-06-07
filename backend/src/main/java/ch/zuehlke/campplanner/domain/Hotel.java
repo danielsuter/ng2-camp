@@ -1,5 +1,7 @@
 package ch.zuehlke.campplanner.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.LinkedList;
@@ -31,6 +33,7 @@ public class Hotel {
     private Integer rooms;
 
     @OneToMany(cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Offer> offers;
 
     public List<Offer> getOffers() {

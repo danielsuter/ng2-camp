@@ -4,7 +4,7 @@ export interface Camp {
     id: number;
     name: string;
     numberOfPeople: number;
-    offerRequests: OfferRequest[];
+    offers: Offer[];
     status: string;
     team: string;
     toDate: Date;
@@ -38,7 +38,7 @@ export interface MailTemplate {
 }
 
 export interface Offer {
-    costPerPerson: number;
+    accepted: boolean;
     currency: Currency;
     description: string;
     doubleRooms: number;
@@ -47,9 +47,10 @@ export interface Offer {
     id: number;
     numberOfPeople: number;
     offerDate: Date;
-    requestingPerson: string;
     singleRooms: number;
     toDate: Date;
+    totalPrice: number;
+    userId: string;
 }
 
 export interface OfferRequest {

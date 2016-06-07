@@ -1,14 +1,12 @@
-    alter table camp_offer_requests 
-        drop constraint FK_2yn7b27it2b93w9y756y0g7y7;
-
-    alter table camp_offer_requests 
-        drop constraint FK_1jrfhen8y0oqmgspi5aotbfsb;
 
     alter table hotel_offers 
         drop constraint FK_jq8c8kaurrm3g4fryiqpgpl0s;
 
     alter table hotel_offers 
         drop constraint FK_qlnlnl66170wfie02qlbipi13;
+
+    alter table offer 
+        drop constraint FK_dvjbd8or2xrady0rxgul5mmoi;
 
     alter table offer 
         drop constraint FK_7w0lpk0dph8bfchqetb2x2qna;
@@ -20,8 +18,6 @@
         drop constraint FK_ns8b94vlj2d1ply4qa5dblcbm;
 
     drop table if exists camp cascade;
-
-    drop table if exists camp_offer_requests cascade;
 
     drop table if exists hotel cascade;
 
@@ -46,11 +42,6 @@
         team varchar(255),
         to_date date,
         primary key (id)
-    );
-
-    create table camp_offer_requests (
-        camp_id int8 not null,
-        offer_requests_id int8 not null
     );
 
     create table hotel (
@@ -85,7 +76,7 @@
 
     create table offer (
         id int8 not null,
-        cost_per_person float8,
+        accepted boolean not null,
         currency varchar(255),
         description varchar(255),
         double_rooms int4,
@@ -93,10 +84,12 @@
         from_date date,
         number_of_people int4,
         offer_date date,
-        requesting_person varchar(255),
         single_rooms int4,
         to_date date,
-        hotel_id int8,
+        total_price float8,
+        user_id varchar(255),
+        camp_id int8,
+        hotel_id int8 not null,
         primary key (id)
     );
 
@@ -119,21 +112,8 @@
         primary key (id)
     );
 
-    alter table camp_offer_requests 
-        add constraint UK_2yn7b27it2b93w9y756y0g7y7 unique (offer_requests_id);
-
     alter table hotel_offers 
         add constraint UK_jq8c8kaurrm3g4fryiqpgpl0s unique (offers_id);
-
-    alter table camp_offer_requests 
-        add constraint FK_2yn7b27it2b93w9y756y0g7y7 
-        foreign key (offer_requests_id) 
-        references offer_request;
-
-    alter table camp_offer_requests 
-        add constraint FK_1jrfhen8y0oqmgspi5aotbfsb 
-        foreign key (camp_id) 
-        references camp;
 
     alter table hotel_offers 
         add constraint FK_jq8c8kaurrm3g4fryiqpgpl0s 
@@ -144,6 +124,11 @@
         add constraint FK_qlnlnl66170wfie02qlbipi13 
         foreign key (hotel_id) 
         references hotel;
+
+    alter table offer 
+        add constraint FK_dvjbd8or2xrady0rxgul5mmoi 
+        foreign key (camp_id) 
+        references camp;
 
     alter table offer 
         add constraint FK_7w0lpk0dph8bfchqetb2x2qna 

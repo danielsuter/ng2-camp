@@ -1,8 +1,9 @@
 package ch.zuehlke.campplanner.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Currency;
 import java.util.Date;
 
@@ -15,33 +16,65 @@ public class Offer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-	@Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.DATE)
     private Date offerDate;
 
-	@Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.DATE)
     private Date expirationDate;
 
-	@Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.DATE)
+    @NotNull
     private Date fromDate;
 
-	@Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.DATE)
+    @NotNull
     private Date toDate;
 
-    private Integer singleRooms;
-    private Integer doubleRooms;
-
-    //private Integer numberOfNights;
-    private Double costPerPerson;
-    private Currency currency; // funktioniert das?
+    @NotNull
     private Integer numberOfPeople;
+    private Integer doubleRooms;
+    private Integer singleRooms;
+    private boolean accepted;
+
+    private Double totalPrice;
+    private Currency currency; // funktioniert das?
 
     private String description;
 
-    private String requestingPerson;
+    // TODO wie werden user abgelegt und woher kommen sie?
+    private String userId;
 
-    @JsonIgnore
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @JsonBackReference
     private Hotel hotel;
+
+    @ManyToOne(optional = true)
+    @JsonBackReference
+    private Camp camp;
+
+    public Double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public Camp getCamp() {
+        return camp;
+    }
+
+    public void setCamp(Camp camp) {
+        this.camp = camp;
+    }
 
     public Long getId() {
         return id;
@@ -99,14 +132,6 @@ public class Offer {
         this.doubleRooms = doubleRooms;
     }
 
-    public Double getCostPerPerson() {
-        return costPerPerson;
-    }
-
-    public void setCostPerPerson(Double costPerPerson) {
-        this.costPerPerson = costPerPerson;
-    }
-
     public Currency getCurrency() {
         return currency;
     }
@@ -131,19 +156,19 @@ public class Offer {
         this.description = description;
     }
 
-    public String getRequestingPerson() {
-        return requestingPerson;
-    }
-
-    public void setRequestingPerson(String requestingPerson) {
-        this.requestingPerson = requestingPerson;
-    }
-
     public Hotel getHotel() {
         return hotel;
     }
 
     public void setHotel(Hotel hotel) {
         this.hotel = hotel;
+    }
+
+    public boolean isAccepted() {
+        return accepted;
+    }
+
+    public void setAccepted(boolean accepted) {
+        this.accepted = accepted;
     }
 }

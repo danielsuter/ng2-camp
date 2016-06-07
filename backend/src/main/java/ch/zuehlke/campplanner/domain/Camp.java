@@ -1,7 +1,10 @@
 package ch.zuehlke.campplanner.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 @Entity
@@ -20,8 +23,12 @@ public class Camp {
     private Date toDate;
     private Integer numberOfPeople;
 
-	@OneToMany
-	private List<OfferRequest> offerRequests;
+    @OneToMany
+    @JsonManagedReference
+    private List<Offer> offers;
+
+//	@OneToMany
+//	private List<OfferRequest> offerRequests;
 
     // derzeitge stand (doodle erstellt, datum fixiert, offerte angenommen, hotels abgesagt, ...)
     private String status;
@@ -74,19 +81,22 @@ public class Camp {
         this.numberOfPeople = numberOfPeople;
     }
 
-    public List<OfferRequest> getOfferRequests() {
-        return offerRequests;
-    }
-
-    public void setOfferRequests(List<OfferRequest> offerRequests) {
-        this.offerRequests = offerRequests;
-    }
-
     public String getStatus() {
         return status;
     }
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public List<Offer> getOffers() {
+        if(offers == null) {
+            offers = new LinkedList<>();
+        }
+        return offers;
+    }
+
+    public void setOffers(List<Offer> offers) {
+        this.offers = offers;
     }
 }
