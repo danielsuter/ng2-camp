@@ -1,19 +1,29 @@
-import {Component} from '@angular/core';
-import {Hotel} from "../../model/backend-typings";
-import {HotelService} from "../../shared/hotel.service";
-import { Router } from '@ngrx/router';
+import {Component, OnInit} from '@angular/core';
+import {Hotel, Country} from '../../model/backend-typings';
+import {HotelService} from '../../shared/hotel.service';
+import {Router} from '@ngrx/router';
+import {CountryService} from '../../shared/country.service';
+import {MaterializeDirective} from 'angular2-materialize';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'hotel-new',
-  directives: [],
-  providers: [HotelService],
+  directives: [MaterializeDirective],
+  providers: [HotelService, CountryService],
   template: require('./hotel-new.component.html')
 })
-export class HotelNewComponent {
-  hotel : Hotel;
+export class HotelNewComponent implements OnInit {
+  hotel: Hotel;
+  countries: Observable<Country[]>;
 
-  constructor(private hotelService: HotelService, private router : Router) {
+  constructor(private hotelService: HotelService,
+              private countryService: CountryService,
+              private router: Router) {
     this.hotel = {} as Hotel;
+  }
+
+  ngOnInit() {
+    this.countries = this.countryService.getCountriesAuthenticated();
   }
 
   saveHotel() {
@@ -21,7 +31,7 @@ export class HotelNewComponent {
       this.openHotel(data));
   }
 
-  openHotel(hotel : Hotel) {
+  openHotel(hotel: Hotel) {
     this.router.go('/hotels/' + hotel.id);
   }
 }

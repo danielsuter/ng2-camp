@@ -8,7 +8,7 @@ import {HotelNewComponent} from '../components/hotel-new/hotel-new.component';
 export const routes: Routes = [
   {
     path: '/',
-    component: HotelsComponent
+    redirectTo: '/hotels'
   },
   {
     path: '/hotels',

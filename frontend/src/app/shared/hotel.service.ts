@@ -24,6 +24,6 @@ export class HotelService {
   }
 
   deleteHotel(id: number): Observable<Response> {
-    return this.crud.delete('/rest/hotels/' + id);
+    return this.crud.doDelete('/rest/hotels/' + id);
   }
 }
