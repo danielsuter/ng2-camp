@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/observable/from';
+import 'rxjs/add/operator/toArray';
+import 'rxjs/add/operator/distinct';
 import {HotelService} from './../../shared/hotel.service.ts';
 import {Hotel} from '../../model/backend-typings';
 import FilterPipe from '../hotel.filter.pipe.ts';
@@ -23,18 +26,13 @@ export class HotelsComponent implements OnInit {
 
   ngOnInit() {
     this.hotels = this.hotelService.getHotelsAuthenticated();
-    this.countries = this.hotels.map(hotels => this.getCountryCodesFromHotels(hotels));
-
+    this.countries = this.hotels
+      .flatMap(hotels => Observable.from(hotels))
+      .map(hotel => hotel.countryCode)
+      .distinct()
+      .toArray()
+      .map(arr => arr.sort());
   }
-
-  private getCountryCodesFromHotels(hotels) {
-    return hotels.map(hotel => hotel.countryCode)
-      .filter(this.onlyUnique);
-  }
-
-  private onlyUnique(value, index, self) {
-  return self.indexOf(value) === index;
-}
 
   public change(options) {
     this.selectedValues = Array.apply(null, options)  // convert to real Array
