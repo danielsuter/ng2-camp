@@ -15,7 +15,7 @@ import CountryFilterPipe from '../country.filter.pipe';
 })
 export class HotelsComponent implements OnInit {
   hotels: Observable<Hotel[]>;
-  countries = [];
+  countries: Observable<string[]>;
   private selectedValues = [];
 
   constructor(private hotelService: HotelService) {
@@ -23,15 +23,20 @@ export class HotelsComponent implements OnInit {
 
   ngOnInit() {
     this.hotels = this.hotelService.getHotelsAuthenticated();
-    this.countries = [
-      {value: 'CH', name: 'Switzerland'},
-      {value: 'DE', name: 'Germany'},
-      {value: 'AT', name: 'Austria'}
-    ];
+    this.countries = this.hotels.map(hotels => this.getCountryCodesFromHotels(hotels));
 
   }
 
-  change(options) {
+  private getCountryCodesFromHotels(hotels) {
+    return hotels.map(hotel => hotel.countryCode)
+      .filter(this.onlyUnique);
+  }
+
+  private onlyUnique(value, index, self) {
+  return self.indexOf(value) === index;
+}
+
+  public change(options) {
     this.selectedValues = Array.apply(null, options)  // convert to real Array
       .filter(option => option.selected)
       .map(option => option.value);

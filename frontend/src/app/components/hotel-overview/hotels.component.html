@@ -16,10 +16,10 @@
   <div class="col m2">
     <div class="row">
       <div class="input-field">
-        <select multiple materialize="material_select" [materializeSelectOptions]="countries"
+        <select multiple materialize="material_select" [materializeSelectOptions]="countries | async"
                 (change)="change($event.target.options)">
           <option value="" disabled selected>Choose countries</option>
-          <option *ngFor="let country of countries" [value]="country.value">{{country.name}}</option>
+          <option *ngFor="let country of countries | async" [value]="country">{{country}}</option>
         </select>
         <label>Countries</label>
       </div>
