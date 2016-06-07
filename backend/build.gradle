@@ -82,6 +82,7 @@ generateTypeScript {
     classPatterns = [
             'ch.zuehlke.campplanner.domain.*'
     ]
+    declarePropertiesAsOptional = true
     jsonLibrary = 'jackson2'
     sortDeclarations = true
     outputKind = 'module'
